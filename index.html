@@ -6,39 +6,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
 </head>
 
 <body onload="initGallery()">
-    <h1>Meme Generator</h1>
-    <div class="gallery-container">
-    </div>
-    <div class="editor-container hidden">
-        <div class="canvas-container">
-            <canvas id="meme-canvas" onclick="clickOnCanvas(event)" width="500" height="500"></canvas>
-        </div>
-        <div class="editor-bar">
-            <input type="text" class="edit-text" onkeyup="changeText(this)">
-            <div class="linse-text"></div>
-            <button onclick="addline()">+</button>
-            <button onclick="onRemoveLine()">trash</button>
-            <button onclick="onMoveLine(-10)">up</button>
-            <button onclick="onMoveLine(10)">Down</button>
-            <button onclick="onChangeSize(1)">A+</button>
-            <button onclick="onChangeSize(-1)">A-</button>
-            <label for="strike-color">strike color:</label>
-            <input type="color" id="strike-color" onchange="onChangeColor(this,false)" value="#00000">
-            <label for="fill-color">fill color:</label>
-            <input type="color" id="fill-color" onchange="onChangeColor(this,true)" value="#ffffff">
-            <div class="share">
-                <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
-                    <input name="img" id="imgData" type="hidden" />
-                    <button class="btn" type="submit">Publish</button>
-                    <div class="share-container"></div>
-                </form>
+    <div class="main-container">
+        <nav class="header-navbar">
+            <div class="logo">
+                <img src="images/LOGO/LOGO.png" alt="logo">
             </div>
-            <a href="#" onclick="onDownload(this)">Download</button>
-        </div>
+            <ul>
+                <li onclick="loadGallery()">gallery</li>
+                <li>Memes</li>
+                <li>about</li>
+            </ul>
+        </nav>
+        <aside class="search"></aside>
+        <main>
+            <div class="gallery-container">
+            </div>
+            <div class="editor-container hidden">
+                <div class="canvas-container">
+                    <canvas id="meme-canvas" onclick="clickOnCanvas(event)" width="500" height="500"></canvas>
+                </div>
+                <div class="editor-bar">
+                    <input type="text" class="edit-text" onkeyup="changeText(this)">
+                    <div class="linse-text"></div>
+                    <button onclick="addline()">+</button>
+                    <button onclick="onRemoveLine()">trash</button>
+                    <button onclick="onMoveLine(-10)">up</button>
+                    <button onclick="onMoveLine(10)">Down</button>
+                    <button onclick="onChangeSize(1)">A+</button>
+                    <button onclick="onChangeSize(-1)">A-</button>
+                    <label for="strike-color">strike color:</label>
+                    <input type="color" id="strike-color" onchange="onChangeColor(this,false)" value="#00000">
+                    <label for="fill-color">fill color:</label>
+                    <input type="color" id="fill-color" onchange="onChangeColor(this,true)" value="#ffffff">
+                    <div class="share">
+                        <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                            <input name="img" id="imgData" type="hidden" />
+                            <button class="btn" type="submit">Publish</button>
+                            <div class="share-container"></div>
+                        </form>
+                    </div>
+                    <a href="#" onclick="onDownload(this)">Download</button></a>
+                </div>
+            </div>
+        </main>
+        <section class="about">
+            <img class="circle" src="images/my-pic.jpg" alt="">
+            <div class="text-continer">
+
+                <h3>Avraham Ben Arosh</h3>
+                <p class="text-muted">My name is Avraham Ben Arosh, I study full-stack web developer in coding-academy.</p>
+                <div class="links">
+                    <a href="https://twitter.com/avrahamba">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="https://github.com/avrahamba">
+                        <i class="fa fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/avraham-ben-arosh-547942b2/">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+                </div>
+                
+            </div>
+        </section>
+        <footer>
+            <h2>avraham</h2>
+            <p>all rights reserved 2020</p>
+        </footer>
     </div>
+
     <script src="js/storage-service.js"></script>
     <script src="js/share-service.js"></script>
     <script src="js/model.js"></script>
