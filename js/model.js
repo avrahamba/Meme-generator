@@ -8,9 +8,10 @@ let gMeme = {
     linse: [
         {
             text: 'I learn JS',
-            size: 20,
+            size: 50,
             align: 'left',
-            color: 'red'
+            colorStroke: '#000000',
+            colorfill:'#ffffff'
         }
     ]
 }
