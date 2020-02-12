@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body onload="initMemeGenerator()">
+<body onload="initGallery()">
     <h1>Meme Generator</h1>
-    <div class="editor-container">
+    <div class="gallery-container">
+    </div>
+    <div class="editor-container hidden">
         <div class="canvas-container">
             <canvas id="meme-canvas" onclick="clickOnCanvas(event)" width="500" height="500"></canvas>
         </div>
@@ -18,9 +20,27 @@
             <input type="text" class="edit-text" onchange="changeText(this)">
             <div class="linse-text"></div>
             <button onclick="addline()">+</button>
+            <button onclick="onRemoveLine()">trash</button>
+            <button onclick="onMoveLine(-10)">up</button>
+            <button onclick="onMoveLine(10)">Down</button>
+            <button onclick="onChangeSize(1)">A+</button>
+            <button onclick="onChangeSize(-1)">A-</button>
+            <label for="strike-color">strike color:</label>
+            <input type="color" id="strike-color" onchange="onChangeColor(this,false)" value="#00000">
+            <label for="fill-color">fill color:</label>
+            <input type="color" id="fill-color" onchange="onChangeColor(this,true)" value="#ffffff">
+            <div class="share">
+                <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                    <input name="img" id="imgData" type="hidden" />
+                    <button class="btn" type="submit">Publish</button>
+                    <div class="share-container"></div>
+                </form>
+            </div>
+            <a href="#" onclick="onDownload(this)">Download</button>
         </div>
     </div>
     <script src="js/storage-service.js"></script>
+    <script src="js/share-service.js"></script>
     <script src="js/model.js"></script>
     <script src="js/main.js"></script>
 </body>

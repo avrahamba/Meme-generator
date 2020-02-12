@@ -1,21 +1,41 @@
-*{
-    
-}
+* {}
 
-body{
+body {
     margin: 0;
 }
 
-.canvas-container{
+.canvas-container {
     width: 50vw;
 }
 
-
-.editor-container{
+.editor-container {
     display: flex;
 }
 
-.editor-bar{
+.editor-bar {
     display: grid;
-    
+}
+
+.hidden {
+    display: none;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, Minmax(150px, 1fr));
+    grid-auto-rows: 150px;
+    gap: 10px;
+}
+
+.gallery-container>* {
+    overflow: hidden;
+    display: flex;
+}
+
+.gallery-container>*>img {
+    object-fit: cover;
+}
+
+.hidden * {
+    display: none;
 }

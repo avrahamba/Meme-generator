@@ -8,11 +8,43 @@ let gMeme = {
     lines: []
 }
 
-function createImges() {
-    return [{ id: 1, url: '1.jpg', keywords: ['Trump'] }]
+function setImg(id) {
+    gMeme.selectedImgId = id;
 }
 
-function getMeme() { return gMeme }
+function createImges() {
+    let inx = 1;
+    return [
+        { id: inx, url: `${inx++}.jpg`, keywords: ['Trump'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['potin'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['every'] }
+    ]
+}
+
+function getMeme() { return gMeme; }
+function getImages() { return gImgs; }
 
 function getImgUrl(id) {
     let img = gImgs.find(img => id === img.id)
@@ -42,5 +74,22 @@ function getLine(x, y) {
         y > line.y - line.height)
     gMeme.seletedLineInx = lineInx;
     return gMeme.lines[lineInx];
+}
+
+function removeLine() {
+    gMeme.lines.splice(gMeme.seletedLineInx, 1);
+}
+
+function moveLine(diff) {
+    gMeme.lines[gMeme.seletedLineInx].y += diff;
+}
+
+function changeSize(diff) {
+    gMeme.lines[gMeme.seletedLineInx].size += diff
+}
+
+function changeColor(value, fill) {
+    if (fill) gMeme.lines[gMeme.seletedLineInx].colorfill = value;
+    else gMeme.lines[gMeme.seletedLineInx].colorStroke = value;
 
 }
