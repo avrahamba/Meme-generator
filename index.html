@@ -27,17 +27,18 @@
             </div>
             <div class="editor-container hidden">
                 <div class="canvas-container">
-                    <canvas id="meme-canvas" onclick="clickOnCanvas(event)" width="500" height="500"></canvas>
+                    <canvas id="meme-canvas" onmousedown="onMouseDownCanvas(event)" onmousemove="onMousMoveCanvas(event)" onclick="clickOnCanvas(event)" width="500" height="500"></canvas>
                 </div>
+                <img class="hidden-img" hidden>
                 <div class="editor-bar">
                     <input type="text" class="edit-text" onkeyup="changeText(this)">
                     <div class="linse-text"></div>
-                    <button onclick="addline()">+</button>
-                    <button onclick="onRemoveLine()">trash</button>
-                    <button onclick="onMoveLine(-10)">up</button>
-                    <button onclick="onMoveLine(10)">Down</button>
-                    <button onclick="onChangeSize(1)">A+</button>
-                    <button onclick="onChangeSize(-1)">A-</button>
+                    <button class="add btn" onclick="addline()"><img src="images/ICONS/add.png" alt="+"></button>
+                    <button class="remove" onclick="onRemoveLine()">trash</button>
+                    <button class="up" onclick="onMoveLine(-10)">up</button>
+                    <button class="Down" onclick="onMoveLine(10)">Down</button>
+                    <button class="big" onclick="onChangeSize(1)">A+</button>
+                    <button class="small" onclick="onChangeSize(-1)">A-</button>
                     <label for="strike-color">strike color:</label>
                     <input type="color" id="strike-color" onchange="onChangeColor(this,false)" value="#00000">
                     <label for="fill-color">fill color:</label>

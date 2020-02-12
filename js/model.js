@@ -71,7 +71,8 @@ function getLine(x, y) {
         x < line.x + line.width / 2 &&
         x > line.x - line.width / 2 &&
         y < line.y + line.height * (2 / 5) &&
-        y > line.y - line.height)
+        y > line.y - line.height);
+    if (lineInx === -1) return;
     gMeme.seletedLineInx = lineInx;
     return gMeme.lines[lineInx];
 }
@@ -80,10 +81,17 @@ function removeLine() {
     gMeme.lines.splice(gMeme.seletedLineInx, 1);
 }
 
-function moveLine(diff) {
-    gMeme.lines[gMeme.seletedLineInx].y += diff;
-}
+function moveLine(diff, startMove) {
+    if (startMove) {
 
+        gMeme.lines[gMeme.seletedLineInx].x = startMove.x - diff.x;
+        gMeme.lines[gMeme.seletedLineInx].y = startMove.y - diff.y;
+
+    } else {
+        gMeme.lines[gMeme.seletedLineInx].x += diff.x;
+        gMeme.lines[gMeme.seletedLineInx].y += diff.y;
+    }
+}
 function changeSize(diff) {
     gMeme.lines[gMeme.seletedLineInx].size += diff
 }
@@ -91,5 +99,4 @@ function changeSize(diff) {
 function changeColor(value, fill) {
     if (fill) gMeme.lines[gMeme.seletedLineInx].colorfill = value;
     else gMeme.lines[gMeme.seletedLineInx].colorStroke = value;
-
 }

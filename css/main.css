@@ -6,27 +6,57 @@ body {
     margin: 0;
 }
 
-.canvas-container {
-    width: 50vw;
-}
+/* editor */
 
 .editor-container {
     display: flex;
 }
 
-@media (max-width: 620px){
+.canvas-container {
+    width: 50vw;
+}
+
+@media (max-width: 720px) {
     .editor-container {
         flex-direction: column;
     }
     .canvas-container {
         width: 100vw;
     }
-        
 }
 
 .editor-bar {
     display: grid;
+    /* grid-template-rows: repeat(5, 60px);
+    grid-template-columns: 60px 60px 60px 60px 100px 60px;
+    grid-template: "edit-text edit-text edit-text edit-text edit-text"
+    ". . add remove ."
+    ". . . . ."
+    ". . . . ."
+    ". . . . ."
+    ". . . . ."
+    ; */
 }
+.editor-bar .btn{
+display: flex;
+padding: 5px;
+height: 60px;
+width: 60px;
+}
+.editor-bar img{
+}
+/* 
+.editor-bar>.edit-text {
+    grid-area: edit-text;
+}
+.editor-bar>.add{grid-area: add-btn;}
+.editor-bar>.remove{grid-area: remove-btn;}
+.editor-bar>.up{grid-area: up;}
+.editor-bar>.Down{grid-area: Down;}
+.editor-bar>.big{grid-area: big;}
+.editor-bar>.small{grid-area: small-btn;} */
+
+/* gallery */
 
 .gallery-container {
     display: grid;
@@ -46,12 +76,9 @@ body {
     object-fit: cover;
 }
 
-
-
 /* layout */
 
-
-.main-container{
+.main-container {
     display: flex;
     flex-direction: column;
 }
@@ -87,13 +114,13 @@ body {
     margin-inline-end: 30px;
 }
 
-.header-navbar li:hover{
+.header-navbar li:hover {
     cursor: pointer;
 }
 
 /* about */
 
-.about{
+.about {
     margin: auto;
     width: 900px;
     height: 400px;
@@ -101,20 +128,19 @@ body {
     padding-top: 75px;
 }
 
-.circle{
+.circle {
     border-radius: 50%;
     height: 222px;
     margin-inline-end: 30px;
 }
-.text-continer{
-    
-}
-.text-continer>h3{
+
+.text-continer>h3 {
     text-align: center;
     font-size: 25px;
     font-weight: 700;
 }
-.links{
+
+.links {
     align-self: center;
     display: flex;
     justify-content: center;
@@ -122,7 +148,7 @@ body {
     font-weight: 400;
 }
 
-.links>a{
+.links>a {
     color: #fff;
     background-color: #ff7f00;
     border-radius: 20%;
@@ -134,9 +160,27 @@ body {
     padding: 3px;
 }
 
+@media (max-width: 900px) {
+    .about {
+        width: 600px;
+        height: 350px;
+        padding-top: 50px;
+    }
+}
+
+@media (max-width: 620px) {
+    .about {
+        align-items: center;
+        flex-direction: column;
+        width: 80vw;
+        height: 350px;
+        padding-top: 30px;
+    }
+}
+
 /* footer */
 
-footer{
+footer {
     background-color: #ff7f00;
     height: 207px;
     display: flex;
@@ -145,7 +189,6 @@ footer{
     justify-content: center;
     color: #ffffff;
 }
-
 
 .hidden {
     display: none;

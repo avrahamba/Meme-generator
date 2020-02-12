@@ -1,5 +1,8 @@
 'use strict'
 
+let activeLine = null;
+let startMove = { x: 0, y: 0 }
+let gImg;
 function initGallery() {
 
     let container = document.querySelector('.gallery-container');
@@ -19,6 +22,7 @@ function enterGenerator(id) {
 }
 function initMemeGenerator() {
     let meme = getMeme();
+    document.querySelector('.hidden-img').src = `images/full/${getImgUrl(meme.selectedImgId)}`;
     render(meme);
     addline();
 }
@@ -26,27 +30,21 @@ function initMemeGenerator() {
 function render(meme) {
     let canvas = document.querySelector('#meme-canvas');
     let ctx = canvas.getContext('2d');
-    let img = new Image()
-    img.src = `images/full/${getImgUrl(meme.selectedImgId)}`;
-    let ratio = img.width / img.height;
+    var elImg = document.querySelector('.hidden-img')
+    let ratio = elImg.width / elImg.height;
     resizeCanvas(ratio);
-    img.onload = () => {
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
-        meme.lines.forEach((line, inx) => {
-            // ctx.lineWidth = '2'
-            ctx.strokeStyle = line.colorStroke;
-            ctx.fillStyle = line.colorfill;
-            ctx.font = `${line.size}px Ariel`;
-            ctx.textAlign = 'center'
+    ctx.drawImage(elImg, 0, 0, canvas.width, canvas.height)
+    meme.lines.forEach((line, inx) => {
+        ctx.strokeStyle = line.colorStroke;
+        ctx.fillStyle = line.colorfill;
+        ctx.font = `${line.size}px Ariel`;
+        ctx.textAlign = 'center'
 
-            line.height = ctx.measureText(line.text).actualBoundingBoxAscent;
-            line.width = ctx.measureText(line.text).width;
-            ctx.fillText(line.text, line.x, line.y);
-            ctx.strokeText(line.text, line.x, line.y);
-
-        });
-    }
-
+        line.height = ctx.measureText(line.text).actualBoundingBoxAscent;
+        line.width = ctx.measureText(line.text).width;
+        ctx.fillText(line.text, line.x, line.y);
+        ctx.strokeText(line.text, line.x, line.y);
+    });
 }
 
 function resizeCanvas(ratio) {
@@ -74,7 +72,8 @@ function addline() {
 function clickOnCanvas(ev) {
     let { offsetX, offsetY } = ev;
     let line = getLine(offsetX, offsetY);
-    document.querySelector('.edit-text').value = line.text;
+    if (line)
+        document.querySelector('.edit-text').value = line.text;
 
 }
 
@@ -84,7 +83,7 @@ function onRemoveLine() {
 }
 
 function onMoveLine(diff) {
-    moveLine(diff);
+    moveLine({ x: 0, y: diff });
     render(getMeme());
 }
 
@@ -104,10 +103,26 @@ function onDownload(elLink) {
     elLink.download = 'my-meme.jpg';
 }
 
-function loadGallery(){
+function loadGallery() {
     document.querySelector('.editor-container').classList.add('hidden');
     document.querySelector('.about').classList.remove('hidden');
     document.querySelector('.gallery-container').classList.remove('hidden');
     initGallery();
 
+}
+
+function onMouseDownCanvas(ev) {
+
+    let { offsetX, offsetY } = ev;
+    startMove.x = ev.offsetX
+    startMove.y = ev.offsetY
+    activeLine = getLine(offsetX, offsetY);
+    window.addEventListener('mouseup', () => { activeLine = null });
+}
+function onMousMoveCanvas(ev) {
+    if (!activeLine) return;
+    let { movementX, movementY } = ev;
+    console.log(movementX, movementY);
+    moveLine({ x: startMove.x - ev.offsetX, y: startMove.y - ev.offsetY },startMove);
+    render(getMeme());
 }
