@@ -17,7 +17,7 @@
             <canvas id="meme-canvas" onclick="clickOnCanvas(event)" width="500" height="500"></canvas>
         </div>
         <div class="editor-bar">
-            <input type="text" class="edit-text" onchange="changeText(this)">
+            <input type="text" class="edit-text" onkeyup="changeText(this)">
             <div class="linse-text"></div>
             <button onclick="addline()">+</button>
             <button onclick="onRemoveLine()">trash</button>

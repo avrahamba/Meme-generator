@@ -100,5 +100,5 @@ function onDownload(elLink) {
     let canvas = document.querySelector('#meme-canvas');
     const data = canvas.toDataURL()
     elLink.href = data
-    elLink.download = 'my-meme'
+    elLink.download = 'my-meme.jpg'
 }
