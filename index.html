@@ -10,10 +10,16 @@
 
 <body onload="initMemeGenerator()">
     <h1>Meme Generator</h1>
-    <div class="canvas-container">
-        <canvas id="meme-canvas" width="500" height="500"></canvas>
+    <div class="editor-container">
+        <div class="canvas-container">
+            <canvas id="meme-canvas" onclick="clickOnCanvas(event)" width="500" height="500"></canvas>
+        </div>
+        <div class="editor-bar">
+            <input type="text" class="edit-text" onchange="changeText(this)">
+            <div class="linse-text"></div>
+            <button onclick="addline()">+</button>
+        </div>
     </div>
-    
     <script src="js/storage-service.js"></script>
     <script src="js/model.js"></script>
     <script src="js/main.js"></script>
