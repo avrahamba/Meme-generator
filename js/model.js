@@ -62,7 +62,8 @@ function addLineService(x, y) {
         size: 50,
         colorStroke: '#000000',
         colorfill: '#ffffff',
-        x, y, width: 0, height: 0
+        x, y, width: 0, height: 0,
+        font: 'Impact'
     })
 }
 
@@ -80,10 +81,21 @@ function getLine(x, y) {
 function removeLine() {
     gMeme.lines.splice(gMeme.seletedLineInx, 1);
 }
+function getLineWidth() {
+    return gMeme.lines[gMeme.seletedLineInx].width;
+}
+function moveLineTo(x, y) {
+    if (y === -1) {
+        gMeme.lines[gMeme.seletedLineInx].x = x;
+    } else {
+        gMeme.lines[gMeme.seletedLineInx].x = x;
+        gMeme.lines[gMeme.seletedLineInx].y = y;
+    }
+
+}
 
 function moveLine(diff, startMove) {
     if (startMove) {
-
         gMeme.lines[gMeme.seletedLineInx].x = startMove.x - diff.x;
         gMeme.lines[gMeme.seletedLineInx].y = startMove.y - diff.y;
 
@@ -99,4 +111,11 @@ function changeSize(diff) {
 function changeColor(value, fill) {
     if (fill) gMeme.lines[gMeme.seletedLineInx].colorfill = value;
     else gMeme.lines[gMeme.seletedLineInx].colorStroke = value;
+}
+function changeFont(font) {
+    gMeme.lines[gMeme.seletedLineInx].font = font;
+}
+function replaceLineSelected() {
+    if (gMeme.seletedLineInx + 1 === gMeme.lines.length) gMeme.seletedLineInx = 0;
+    else gMeme.seletedLineInx++;
 }

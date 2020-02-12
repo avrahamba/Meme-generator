@@ -1,7 +1,6 @@
 'use strict'
 
 let activeLine = null;
-let startMove = { x: 0, y: 0 }
 let gImg;
 function initGallery() {
 
@@ -27,7 +26,8 @@ function initMemeGenerator() {
     addline();
 }
 
-function render(meme) {
+function render() {
+    let meme = getMeme();
     let canvas = document.querySelector('#meme-canvas');
     let ctx = canvas.getContext('2d');
     var elImg = document.querySelector('.hidden-img')
@@ -37,7 +37,7 @@ function render(meme) {
     meme.lines.forEach((line, inx) => {
         ctx.strokeStyle = line.colorStroke;
         ctx.fillStyle = line.colorfill;
-        ctx.font = `${line.size}px Ariel`;
+        ctx.font = `${line.size}px ${line.font}`;
         ctx.textAlign = 'center'
 
         line.height = ctx.measureText(line.text).actualBoundingBoxAscent;
@@ -58,7 +58,7 @@ function resizeCanvas(ratio) {
 
 function changeText(elText) {
     changeTextLine(elText.value);
-    render(getMeme());
+    render();;
 }
 function addline() {
     let memeLineCount = getMeme().lines.length;
@@ -67,34 +67,35 @@ function addline() {
     if (memeLineCount === 0 || memeLineCount === 1) y = (memeLineCount) ? canvas.height - 100 : 100;
     addLineService(canvas.width / 2, y)
     document.querySelector('.edit-text').value = '';
+    document.querySelector('.select-font').value = 'Impact';
 }
 
 function clickOnCanvas(ev) {
     let { offsetX, offsetY } = ev;
     let line = getLine(offsetX, offsetY);
-    if (line)
-        document.querySelector('.edit-text').value = line.text;
+    document.querySelector('.select-font').value = line.font;
+    if (line) document.querySelector('.edit-text').value = line.text;
 
 }
 
 function onRemoveLine() {
     removeLine();
-    render(getMeme());
+    render();;
 }
 
 function onMoveLine(diff) {
     moveLine({ x: 0, y: diff });
-    render(getMeme());
+    render();;
 }
 
 function onChangeSize(diff) {
     changeSize(diff);
-    render(getMeme());
+    render();;
 }
 
 function onChangeColor(elColor, fill) {
     changeColor(elColor.value, fill)
-    render(getMeme());
+    render();;
 }
 function onDownload(elLink) {
     let canvas = document.querySelector('#meme-canvas');
@@ -112,15 +113,36 @@ function loadGallery() {
 }
 
 function onMouseDownCanvas(ev) {
-
     let { offsetX, offsetY } = ev;
-    startMove.x = ev.offsetX
-    startMove.y = ev.offsetY
     activeLine = getLine(offsetX, offsetY);
     window.addEventListener('mouseup', () => { activeLine = null });
 }
 function onMousMoveCanvas(ev) {
     if (!activeLine) return;
-    moveLine({ x: startMove.x - ev.offsetX, y: startMove.y - ev.offsetY },startMove);
-    render(getMeme());
+    moveLineTo(ev.offsetX, ev.offsetY);
+    render();;
+}
+
+function onMoveToRight() {
+    moveLineTo(document.querySelector('#meme-canvas').width - getLineWidth() / 2, -1)
+    render();;
+}
+function onMoveToLeft() {
+    moveLineTo(getLineWidth() / 2, -1)
+    render();;
+}
+function onMoveToCenter() {
+    moveLineTo(document.querySelector('#meme-canvas').width / 2, -1)
+    render();;
+}
+
+function onChanchFont(font) {
+    changeFont(font);
+    render();
+}
+
+function onReplaceLineSelected(){
+    replaceLineSelected();
+    document.querySelector('.edit-text').value = getMeme().lines[getMeme().seletedLineInx].text;
+    render();
 }

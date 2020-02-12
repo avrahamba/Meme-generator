@@ -35,35 +35,43 @@
                 <img class="hidden-img" hidden>
                 <div class="editor-bar">
                     <input type="text" class="edit-text" onkeyup="changeText(this)">
-                    <div class="linse-text"></div>
+                    <button class="replace-line-selected btn" onclick="onReplaceLineSelected()"><img src="images/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt="+"></button>
                     <button class="add btn" onclick="addline()"><img src="images/ICONS/add.png" alt="+"></button>
                     <button class="remove btn" onclick="onRemoveLine()"><img src="images/ICONS/trash.png" alt="trash"></button>
                     <button class="big btn" onclick="onChangeSize(1)"><img src="images/ICONS/increase font - icon.png" alt=""></button>
                     <button class="small btn" onclick="onChangeSize(-1)"><img src="images/ICONS/decrease font - icon.png" alt=""></button>
-                    <div class="btn">
+                    <div class="strike-color-container btn">
                         <img src="images/ICONS/text stroke.png">
                         <input type="color" class="strike-color btn" onchange="onChangeColor(this,false)" value="#00000">
                     </div>
-                    <div class="btn">
+                    <div class="fill-color-container btn">
                         <img src="images/ICONS/paint-board-and-brush.png">
-                        <input type="color" class="strike-color btn" onchange="onChangeColor(this,false)" value="#00000">
                         <input type="color" class="fill-color btn" onchange="onChangeColor(this,true)" value="#ffffff">
                     </div>
-                    <div class="share">
+                    <button onclick="onMoveToRight()" class="right btn"><img src="images/ICONS/align-to-right.png" alt=""></button>
+                    <button onclick="onMoveToLeft()" class="left btn"><img src="images/ICONS/align-to-left.png" alt=""></button>
+                    <button onclick="onMoveToCenter()" class="center btn"><img src="images/ICONS/center-text-alignment.png" alt=""></button>
+                    <select class="select-font" onchange="onChanchFont(value)">
+                        <option value="Impact">Impact</option>
+                        <option value="Ariel">Ariel</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Verdana">Verdana</option>
+                    </select>
+                    <div class="share btn-share">
                         <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
-                            <input name="img" id="imgData" type="hidden" />
-                            <button class="btn" type="submit">Publish</button>
-                            <div class="share-container"></div>
+                            <input name="img" id="imgData" type="hidden"/>
+                            <div class="share-container">
+                                <button class="btn-share" type="submit">Prepare to share</button>
+                            </div>
                         </form>
                     </div>
-                    <a href="#" onclick="onDownload(this)">Download</button></a>
+                    <a href="#" class="btn-share download" onclick="onDownload(this)">Download</button></a>
                 </div>
             </div>
         </main>
         <section class="about">
             <img class="circle" src="images/my-pic.jpg" alt="">
             <div class="text-continer">
-
                 <h3>Avraham Ben Arosh</h3>
                 <p class="text-muted">My name is Avraham Ben Arosh, I study full-stack web developer in coding-academy.
                 </p>
@@ -78,7 +86,6 @@
                         <i class="fa fa-linkedin"></i>
                     </a>
                 </div>
-
             </div>
         </section>
         <footer>
