@@ -14,6 +14,16 @@ body {
     display: flex;
 }
 
+@media (max-width: 620px){
+    .editor-container {
+        flex-direction: column;
+    }
+    .canvas-container {
+        width: 100vw;
+    }
+        
+}
+
 .editor-bar {
     display: grid;
 }
@@ -36,13 +46,7 @@ body {
     object-fit: cover;
 }
 
-.hidden {
-    display: none;
-}
 
-.hidden * {
-    display: none;
-}
 
 /* layout */
 
@@ -140,4 +144,13 @@ footer{
     align-items: center;
     justify-content: center;
     color: #ffffff;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.hidden * {
+    display: none;
 }

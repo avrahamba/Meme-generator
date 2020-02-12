@@ -14,6 +14,7 @@ function enterGenerator(id) {
     setImg(id);
     document.querySelector('.gallery-container').classList.add('hidden');
     document.querySelector('.editor-container').classList.remove('hidden');
+    document.querySelector('.about').classList.add('hidden');
     initMemeGenerator();
 }
 function initMemeGenerator() {
@@ -105,6 +106,7 @@ function onDownload(elLink) {
 
 function loadGallery(){
     document.querySelector('.editor-container').classList.add('hidden');
+    document.querySelector('.about').classList.remove('hidden');
     document.querySelector('.gallery-container').classList.remove('hidden');
     initGallery();
 
