@@ -121,8 +121,6 @@ function onMouseDownCanvas(ev) {
 }
 function onMousMoveCanvas(ev) {
     if (!activeLine) return;
-    let { movementX, movementY } = ev;
-    console.log(movementX, movementY);
     moveLine({ x: startMove.x - ev.offsetX, y: startMove.y - ev.offsetY },startMove);
     render(getMeme());
 }

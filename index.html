@@ -7,6 +7,7 @@
     <title>Meme Generator</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
 </head>
 
 <body onload="initGallery()">
@@ -27,22 +28,27 @@
             </div>
             <div class="editor-container hidden">
                 <div class="canvas-container">
-                    <canvas id="meme-canvas" onmousedown="onMouseDownCanvas(event)" onmousemove="onMousMoveCanvas(event)" onclick="clickOnCanvas(event)" width="500" height="500"></canvas>
+                    <canvas id="meme-canvas" onmousedown="onMouseDownCanvas(event)"
+                        onmousemove="onMousMoveCanvas(event)" onclick="clickOnCanvas(event)" width="500"
+                        height="500"></canvas>
                 </div>
                 <img class="hidden-img" hidden>
                 <div class="editor-bar">
                     <input type="text" class="edit-text" onkeyup="changeText(this)">
                     <div class="linse-text"></div>
                     <button class="add btn" onclick="addline()"><img src="images/ICONS/add.png" alt="+"></button>
-                    <button class="remove" onclick="onRemoveLine()">trash</button>
-                    <button class="up" onclick="onMoveLine(-10)">up</button>
-                    <button class="Down" onclick="onMoveLine(10)">Down</button>
-                    <button class="big" onclick="onChangeSize(1)">A+</button>
-                    <button class="small" onclick="onChangeSize(-1)">A-</button>
-                    <label for="strike-color">strike color:</label>
-                    <input type="color" id="strike-color" onchange="onChangeColor(this,false)" value="#00000">
-                    <label for="fill-color">fill color:</label>
-                    <input type="color" id="fill-color" onchange="onChangeColor(this,true)" value="#ffffff">
+                    <button class="remove btn" onclick="onRemoveLine()"><img src="images/ICONS/trash.png" alt="trash"></button>
+                    <button class="big btn" onclick="onChangeSize(1)"><img src="images/ICONS/increase font - icon.png" alt=""></button>
+                    <button class="small btn" onclick="onChangeSize(-1)"><img src="images/ICONS/decrease font - icon.png" alt=""></button>
+                    <div class="btn">
+                        <img src="images/ICONS/text stroke.png">
+                        <input type="color" class="strike-color btn" onchange="onChangeColor(this,false)" value="#00000">
+                    </div>
+                    <div class="btn">
+                        <img src="images/ICONS/paint-board-and-brush.png">
+                        <input type="color" class="strike-color btn" onchange="onChangeColor(this,false)" value="#00000">
+                        <input type="color" class="fill-color btn" onchange="onChangeColor(this,true)" value="#ffffff">
+                    </div>
                     <div class="share">
                         <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
                             <input name="img" id="imgData" type="hidden" />
@@ -59,7 +65,8 @@
             <div class="text-continer">
 
                 <h3>Avraham Ben Arosh</h3>
-                <p class="text-muted">My name is Avraham Ben Arosh, I study full-stack web developer in coding-academy.</p>
+                <p class="text-muted">My name is Avraham Ben Arosh, I study full-stack web developer in coding-academy.
+                </p>
                 <div class="links">
                     <a href="https://twitter.com/avrahamba">
                         <i class="fa fa-twitter"></i>
@@ -71,7 +78,7 @@
                         <i class="fa fa-linkedin"></i>
                     </a>
                 </div>
-                
+
             </div>
         </section>
         <footer>

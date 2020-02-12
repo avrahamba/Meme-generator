@@ -45,6 +45,13 @@ width: 60px;
 }
 .editor-bar img{
 }
+
+.strike-color,.fill-color{
+    position: absolute;
+    margin-top:-5px ;
+    margin-left: -5px;
+    opacity: 0;
+}
 /* 
 .editor-bar>.edit-text {
     grid-area: edit-text;
