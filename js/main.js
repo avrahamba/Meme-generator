@@ -322,8 +322,8 @@ function loadSaved() {
         let canvas = document.querySelector(`.meme${inx}`);
         let elContainer = document.querySelector(`.meme-card${inx}`);
         canvas.width = elContainer.offsetWidth;
-        
-        elContainer.height = elContainer.offsetWidth * (meme.fakeImg.height/meme.fakeImg.width );
+
+        elContainer.height = elContainer.offsetWidth * (meme.fakeImg.height / meme.fakeImg.width);
         canvas.height = elContainer.height;
         renderMemeSaved(meme, canvas)
     }
@@ -359,39 +359,39 @@ function renderMemeSaved(meme, canvas) {
     });
 }
 
-function openMeme(inx){
+function openMeme(inx) {
     let meme = getSavedMeme()[inx];
 
-        meme.fakeImg = document.createElement('img');
-        meme.fakeImg.src = `images/full/${meme.selectedImgId}.jpg`;
+    meme.fakeImg = document.createElement('img');
+    meme.fakeImg.src = `images/full/${meme.selectedImgId}.jpg`;
 
-        let newProps = [];
+    let newProps = [];
 
-        meme.props.forEach((prop) => {
-            let fakeImg = document.createElement('img');
-            fakeImg.src = `images/props/${prop.propId}.png`;
-            let size = prop.size;
-            let propRatio = prop.propRatio;
-            let { propId, x, y } = prop;
-            newProps.push({
-                type: 'prop',
-                propId,
-                fakeImg,
-                setSize: (diff) => { size += diff; },
-                x,
-                y,
-                height: () => size / propRatio,
-                width: () => size,
-            })
-        });
-        meme.props = newProps;
+    meme.props.forEach((prop) => {
+        let fakeImg = document.createElement('img');
+        fakeImg.src = `images/props/${prop.propId}.png`;
+        let size = prop.size;
+        let propRatio = prop.propRatio;
+        let { propId, x, y } = prop;
+        newProps.push({
+            type: 'prop',
+            propId,
+            fakeImg,
+            setSize: (diff) => { size += diff; },
+            x,
+            y,
+            height: () => size / propRatio,
+            width: () => size,
+        })
+    });
+    meme.props = newProps;
 
 
-        gMeme = meme;
-        document.querySelector('.gallery-container').classList.add('hidden');
-        document.querySelector('.gallery-saved').classList.add('hidden');
-        document.querySelector('.editor-container').classList.remove('hidden');
-        document.querySelector('.about').classList.add('hidden');
-        initMemeGenerator();
-    
+    gMeme = meme;
+    document.querySelector('.gallery-container').classList.add('hidden');
+    document.querySelector('.gallery-saved').classList.add('hidden');
+    document.querySelector('.editor-container').classList.remove('hidden');
+    document.querySelector('.about').classList.add('hidden');
+    initMemeGenerator();
+
 }

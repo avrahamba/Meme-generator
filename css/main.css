@@ -295,15 +295,20 @@ body {
 	overflow: hidden;
 	display: flex;
 	border-radius: 15px;
+	background-color: black;
 }
 
 .gallery-container>*:hover {
 	cursor: pointer;
-	
 }
 
 .gallery-container>*>img {
 	object-fit: cover;
+	transition: opacity 0.3s;
+	opacity: 1;
+}
+.gallery-container>*>img:hover {
+	opacity: 0.4;
 }
 
 /* saved meme */
@@ -368,11 +373,19 @@ body {
 .header-navbar li {
 	display: flex;
 	align-items: center;
-	margin-inline-end: 30px;
+	width: 7rem;
+	display: flex;
+	justify-content: center;
 }
-
+.header-navbar li{
+	border-right: solid green 2px;
+}
+.header-navbar li:nth-child(3){
+	border-right: none;
+}
 .header-navbar li:hover {
 	cursor: pointer;
+	border-bottom: black 5px solid;
 }
 
 /* about */
