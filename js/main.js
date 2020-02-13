@@ -24,6 +24,7 @@ function initGallery() {
 function enterGenerator(id) {
     setImg(id);
     document.querySelector('.gallery-container').classList.add('hidden');
+    document.querySelector('.gallery-saved').classList.add('hidden');
     document.querySelector('.editor-container').classList.remove('hidden');
     document.querySelector('.about').classList.add('hidden');
     initMemeGenerator();
@@ -153,6 +154,7 @@ function onDownload(elLink) {
 
 function loadGallery() {
     document.querySelector('.editor-container').classList.add('hidden');
+    document.querySelector('.gallery-saved').classList.add('hidden');
     document.querySelector('.about').classList.remove('hidden');
     document.querySelector('.gallery-container').classList.remove('hidden');
     initGallery();
@@ -266,9 +268,21 @@ function onTouchStart(ev){
 }
 
 function onTouchMove(ev){
-    
-    console.log(ev);
+    ev.stopPropagation();
     moveLineTo(ev.center.x, ev.center.y);
     render();;
+}
+function loadAbout(){
+    document.querySelector('.gallery-container').classList.add('hidden');
+    document.querySelector('.gallery-saved').classList.add('hidden');
+    document.querySelector('.editor-container').classList.add('hidden');
+    document.querySelector('.about').classList.remove('hidden');
+    
+}
+function loadSaved(){
+    document.querySelector('.gallery-container').classList.add('hidden');
+    document.querySelector('.gallery-saved').classList.remove('hidden');
+    document.querySelector('.editor-container').classList.add('hidden');
+    document.querySelector('.about').classList.add('hidden');
 
 }
