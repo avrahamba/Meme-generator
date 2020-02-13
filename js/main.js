@@ -13,7 +13,7 @@ function init() {
     hammer.on('panup pandown panleft panright', onTouchMove);
 }
 function initGallery() {
-    let container = document.querySelector('.gallery-container');
+    let container = document.querySelector('.gallery');
     let strHtml = getImages().map(img => `
     <div class="card" onclick="enterGenerator(${img.id})">
         <img src="images/full/${img.url}"/>
@@ -151,7 +151,7 @@ function onDownload(elLink) {
     elLink.href = data;
     elLink.download = 'my-meme.png';
 }
-function onShareToWhatsapp(){
+function onShareToWhatsapp() {
 
 
     /*
@@ -163,7 +163,7 @@ fakeLink.click();
 function loadGallery() {
     document.querySelector('.editor-container').classList.add('hidden');
     document.querySelector('.gallery-saved').classList.add('hidden');
-    document.querySelector('.about').classList.remove('hidden');
+    document.querySelector('.about').classList.add('hidden');
     document.querySelector('.gallery-container').classList.remove('hidden');
     initGallery();
 
@@ -259,9 +259,9 @@ function onSaveMeme() {
 }
 
 function onTouchStart(ev) {
-    
-    let line = getLine(ev.srcEvent.pageX-ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY-ev.srcEvent.target.offsetTop);
-    if(!line)return;
+
+    let line = getLine(ev.srcEvent.pageX - ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY - ev.srcEvent.target.offsetTop);
+    if (!line) return;
     if (line && line.type === 'line') {
         document.querySelector('.select-font').value = line.font;
         document.querySelector('.edit-text').value = line.text;
@@ -278,7 +278,7 @@ function onTouchStart(ev) {
 
 function onTouchMove(ev) {
     ev.srcEvent.stopPropagation();
-    moveLineTo(ev.srcEvent.pageX-ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY-ev.srcEvent.target.offsetTop);
+    moveLineTo(ev.srcEvent.pageX - ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY - ev.srcEvent.target.offsetTop);
     render();
 }
 function loadAbout() {
@@ -404,6 +404,29 @@ function openMeme(inx) {
     initMemeGenerator();
 
 }
-function onChangeBar(){
+function onChangeBar() {
     document.body.classList.toggle('side-bar');
+}
+
+function searchTabs(el) {
+    let container = document.querySelector('.gallery');
+    let strSearch = el.value.toLowerCase();
+    if (strSearch === '') {
+        let strHtml = getImages().map(img => `
+            <div class="card" onclick="enterGenerator(${img.id})">
+            <img src="images/full/${img.url}"/>
+            </div>
+            `).join('');
+        container.innerHTML = strHtml;
+    } else {
+        let strHtml = getImages().filter(img =>
+            img.keywords.findIndex(keyword => keyword.toLowerCase().includes(strSearch)) !== -1
+        ).map(img => `
+            <div class="card" onclick="enterGenerator(${img.id})">
+            <img src="images/full/${img.url}"/>
+            </div>
+            `).join('');
+        container.innerHTML = strHtml;
+    }
+
 }

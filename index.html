@@ -24,9 +24,16 @@
             </ul>
             <div onclick="onChangeBar()" class="hamborger fa fa-bars"></div>
         </nav>
-        <aside class="search"></aside>
         <main>
             <div class="gallery-container">
+                <aside class="search-container">
+                    <div class="search">
+                        <input type="text" placeholder="Enter search keyword" onkeyup="searchTabs(this)">
+                        <div class="fa fa-search icon"></div>
+                    </div>
+                    <div class="tags"></div>
+                </aside>
+                <div class="gallery"></div>
             </div>
             <div class="gallery-saved hidden">
             </div>
@@ -107,7 +114,7 @@
                 </div>
             </div>
         </main>
-        <section class="about">
+        <section class="about hidden">
             <img class="circle" src="images/my-pic.jpg" alt="">
             <div class="text-continer">
                 <h3>Avraham Ben Arosh</h3>
