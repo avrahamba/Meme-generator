@@ -1,9 +1,11 @@
 * {
 	box-sizing: border-box;
 }
-html{
-	    font-family: 'Montserrat', sans-serif;
+
+html {
+	font-family: 'Montserrat', sans-serif;
 }
+
 body {
 	margin: 0;
 }
@@ -174,10 +176,12 @@ body {
 	grid-row: 6 / 7;
 	grid-column: 1 / 2;
 }
+
 .editor-bar>.save {
 	grid-row: 6 / 7;
 	grid-column: 2 / 3;
 }
+
 .editor-bar>.whatsapp {
 	grid-row: 6 / 7;
 	grid-column: 3 / 4;
@@ -208,10 +212,10 @@ body {
 	width: 12vw;
 	font-weight: 500;
 	font-family: 'Montserrat', sans-serif;
-	
 }
+
 .editor-bar button.btn-share:hover {
-cursor: pointer;
+	cursor: pointer;
 }
 
 .editor-bar .download {
@@ -262,7 +266,7 @@ cursor: pointer;
 	.editor-bar .btn-share {
 		height: 100%;
 	}
-	.editor-bar .share *{
+	.editor-bar .share * {
 		height: 100%;
 	}
 	.editor-bar .share {
@@ -273,8 +277,7 @@ cursor: pointer;
 		width: 30vw;
 		font-weight: 500;
 		font-family: 'Montserrat', sans-serif;
-		
-	}	
+	}
 }
 
 /* gallery */
@@ -291,10 +294,39 @@ cursor: pointer;
 .gallery-container>* {
 	overflow: hidden;
 	display: flex;
+	border-radius: 15px;
+}
+
+.gallery-container>*:hover {
+	cursor: pointer;
+	
 }
 
 .gallery-container>*>img {
 	object-fit: cover;
+}
+
+/* saved meme */
+
+.gallery-saved {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 45);
+	justify-content: center;
+	gap: 2vw;
+}
+
+.gallery-saved .card {
+	height: 150px;
+}
+
+.gallery-saved>.meme-card {
+	width: 45vw;
+}
+
+@media (max-width: 720px) {
+	.gallery-saved>.meme-card {
+		width: 88.2vw;
+	}
 }
 
 /* layout */
@@ -320,6 +352,10 @@ cursor: pointer;
 
 .logo>img {
 	height: 100%;
+}
+
+.logo>img:hover {
+	cursor: pointer;
 }
 
 .header-navbar>ul {

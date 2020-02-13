@@ -12,6 +12,11 @@ let gMeme = {
 
 function setImg(id) {
     gMeme.selectedImgId = id;
+    gMeme.seletedLineInx= 0;
+    gMeme.seletedPropInx= -1;
+    gMeme.lines= [];
+    gMeme.props= [];
+
 }
 
 function createImges() {
@@ -166,11 +171,15 @@ function saveMeme(){
     let savedMemes = loadFromStorage('savedMemes');
     if(!savedMemes)savedMemes=[];
     let copyMeme = JSON.parse(JSON.stringify(gMeme));
-    copyMeme.props.forEach(prop => {
+    copyMeme.props.forEach((prop,inx) => {
         prop.fakeImg=null;
+        prop.size = gMeme.props[inx].width()
+        prop.propRatio = gMeme.props[inx].width()/gMeme.props[inx].height()
     });
-    
     savedMemes.push(copyMeme);
-    console.log(savedMemes);
     saveToStorage('savedMemes',savedMemes);
+}
+
+function getSavedMeme(){
+    return loadFromStorage('savedMemes');
 }

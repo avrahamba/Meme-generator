@@ -45,13 +45,13 @@ function render() {
     let ratio = elImg.width / elImg.height;
     resizeCanvas(ratio);
     ctx.drawImage(elImg, 0, 0, canvas.width, canvas.height)
-    meme.props.forEach((prop,inx) => {
-        
+    meme.props.forEach((prop, inx) => {
+
         let { x, y, fakeImg } = prop;
         ctx.drawImage(fakeImg, x - prop.width() / 2, y - prop.height() / 2, prop.width(), prop.height())
         if (avtiveLineOrProp && inx === getMeme().seletedPropInx) {
             ctx.beginPath()
-            ctx.rect(prop.x - prop.width() /2, prop.y - prop.height()/2, prop.width(), prop.height())
+            ctx.rect(prop.x - prop.width() / 2, prop.y - prop.height() / 2, prop.width(), prop.height())
             ctx.strokeStyle = '555555'
             ctx.stroke()
         }
@@ -246,11 +246,11 @@ function onAddProp(el) {
     addProp(x, y, propId);
     render();
 }
-function onSaveMeme(){
+function onSaveMeme() {
     saveMeme();
 }
 
-function onTouchStart(ev){
+function onTouchStart(ev) {
     let line = getLine(ev.center.x, ev.center.y);
 
     if (line && line.type === 'line') {
@@ -267,22 +267,131 @@ function onTouchStart(ev){
 
 }
 
-function onTouchMove(ev){
+function onTouchMove(ev) {
     ev.stopPropagation();
     moveLineTo(ev.center.x, ev.center.y);
-    render();;
+    render();
 }
-function loadAbout(){
+function loadAbout() {
     document.querySelector('.gallery-container').classList.add('hidden');
     document.querySelector('.gallery-saved').classList.add('hidden');
     document.querySelector('.editor-container').classList.add('hidden');
     document.querySelector('.about').classList.remove('hidden');
-    
+
 }
-function loadSaved(){
+function loadSaved() {
     document.querySelector('.gallery-container').classList.add('hidden');
     document.querySelector('.gallery-saved').classList.remove('hidden');
     document.querySelector('.editor-container').classList.add('hidden');
     document.querySelector('.about').classList.add('hidden');
 
+    let savedMemes = getSavedMeme();
+
+    document.querySelector('.gallery-saved').innerHTML = savedMemes.map((meme, inx) =>
+        `
+        <div class="meme-card meme-card${inx}">
+            <canvas onclick="openMeme(${inx})" class="meme${inx}"></canvas>
+        </div>
+
+        `
+    ).join('');
+    savedMemes.forEach((meme, inx) => {
+        meme.fakeImg = document.createElement('img');
+        meme.fakeImg.src = `images/full/${meme.selectedImgId}.jpg`;
+
+        let newProps = [];
+
+        meme.props.forEach((prop) => {
+            let fakeImg = document.createElement('img');
+            fakeImg.src = `images/props/${prop.propId}.png`;
+            let size = prop.size;
+            let propRatio = prop.propRatio;
+            let { propId, x, y } = prop;
+            newProps.push({
+                type: 'prop',
+                propId,
+                fakeImg,
+                setSize: (diff) => { size += diff; },
+                x,
+                y,
+                height: () => size / propRatio,
+                width: () => size,
+            })
+        });
+        meme.props = newProps;
+        let canvas = document.querySelector(`.meme${inx}`);
+        let elContainer = document.querySelector(`.meme-card${inx}`);
+        canvas.width = elContainer.offsetWidth;
+        
+        elContainer.height = elContainer.offsetWidth * (meme.fakeImg.height/meme.fakeImg.width );
+        canvas.height = elContainer.height;
+        renderMemeSaved(meme, canvas)
+    }
+    );
+
+}
+
+function renderMemeSaved(meme, canvas) {
+    let ctx = canvas.getContext('2d');
+    let elImg = meme.fakeImg;
+
+    let ratio = elImg.width / elImg.height;
+    resizeCanvas(ratio);
+    ctx.drawImage(elImg, 0, 0, canvas.width, canvas.height)
+    console.log(meme.fakeImg);
+    meme.props.forEach((prop, inx) => {
+        var img = new Image()
+        img.src = `images/props/${prop.propId}.png`;
+        img.onload = () => {
+            let { x, y } = prop;
+            ctx.drawImage(img, x - prop.width() / 2, y - prop.height() / 2, prop.width(), prop.height());
+        }
+    })
+    meme.lines.forEach((line, inx) => {
+        ctx.strokeStyle = line.colorStroke;
+        ctx.fillStyle = line.colorfill;
+        ctx.font = `${line.size}px ${line.font}`;
+        ctx.textAlign = 'center'
+        line.height = ctx.measureText(line.text).actualBoundingBoxAscent;
+        line.width = ctx.measureText(line.text).width;
+        ctx.fillText(line.text, line.x, line.y);
+        ctx.strokeText(line.text, line.x, line.y);
+    });
+}
+
+function openMeme(inx){
+    let meme = getSavedMeme()[inx];
+
+        meme.fakeImg = document.createElement('img');
+        meme.fakeImg.src = `images/full/${meme.selectedImgId}.jpg`;
+
+        let newProps = [];
+
+        meme.props.forEach((prop) => {
+            let fakeImg = document.createElement('img');
+            fakeImg.src = `images/props/${prop.propId}.png`;
+            let size = prop.size;
+            let propRatio = prop.propRatio;
+            let { propId, x, y } = prop;
+            newProps.push({
+                type: 'prop',
+                propId,
+                fakeImg,
+                setSize: (diff) => { size += diff; },
+                x,
+                y,
+                height: () => size / propRatio,
+                width: () => size,
+            })
+        });
+        meme.props = newProps;
+
+
+        gMeme = meme;
+        document.querySelector('.gallery-container').classList.add('hidden');
+        document.querySelector('.gallery-saved').classList.add('hidden');
+        document.querySelector('.editor-container').classList.remove('hidden');
+        document.querySelector('.about').classList.add('hidden');
+        initMemeGenerator();
+    
 }
