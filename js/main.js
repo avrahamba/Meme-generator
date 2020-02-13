@@ -8,6 +8,9 @@ let avtiveLineOrProp = false;
 function init() {
     initGallery();
     window.addEventListener('click', () => { avtiveLineOrProp = false; render(); })
+    let hammer = new Hammer(document.querySelector('#meme-canvas'));
+    hammer.on('doubletap tap', onTouchStart);
+    hammer.on('panup pandown panleft panright', onTouchMove);
 }
 function initGallery() {
     let container = document.querySelector('.gallery-container');
@@ -241,7 +244,31 @@ function onAddProp(el) {
     addProp(x, y, propId);
     render();
 }
-function onSave(){
+function onSaveMeme(){
+    saveMeme();
+}
+
+function onTouchStart(ev){
+    let line = getLine(ev.center.x, ev.center.y);
+
+    if (line && line.type === 'line') {
+        document.querySelector('.select-font').value = line.font;
+        document.querySelector('.edit-text').value = line.text;
+    } else if (line && line.type === 'prop') {
+        document.querySelector('.select-font').value = 'Impact';
+        document.querySelector('.edit-text').value = '';
+    } else {
+        document.querySelector('.select-font').value = 'Impact';
+        document.querySelector('.edit-text').value = '';
+        avtiveLineOrProp = false;
+    }
+
+}
+
+function onTouchMove(ev){
     
-    loadGallery();   
+    console.log(ev);
+    moveLineTo(ev.center.x, ev.center.y);
+    render();;
+
 }

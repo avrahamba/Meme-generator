@@ -161,3 +161,16 @@ function addProp(x, y, propId) {
         width: () => size,
     })
 }
+
+function saveMeme(){
+    let savedMemes = loadFromStorage('savedMemes');
+    if(!savedMemes)savedMemes=[];
+    let copyMeme = JSON.parse(JSON.stringify(gMeme));
+    copyMeme.props.forEach(prop => {
+        prop.fakeImg=null;
+    });
+    
+    savedMemes.push(copyMeme);
+    console.log(savedMemes);
+    saveToStorage('savedMemes',savedMemes);
+}
