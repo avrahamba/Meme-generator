@@ -231,6 +231,7 @@ cursor: pointer;
 	}
 	.canvas-container {
 		width: 88.2vw;
+		margin-bottom: 0;
 	}
 	.editor-bar {
 		display: grid;
@@ -258,6 +259,22 @@ cursor: pointer;
 	.props-list>.prop>img {
 		width: 14vw;
 	}
+	.editor-bar .btn-share {
+		height: 100%;
+	}
+	.editor-bar .share *{
+		height: 100%;
+	}
+	.editor-bar .share {
+		align-self: stretch;
+	}
+	.editor-bar button.btn-share {
+		border: none;
+		width: 30vw;
+		font-weight: 500;
+		font-family: 'Montserrat', sans-serif;
+		
+	}	
 }
 
 /* gallery */
