@@ -41,12 +41,18 @@ function render() {
     let ratio = elImg.width / elImg.height;
     resizeCanvas(ratio);
     ctx.drawImage(elImg, 0, 0, canvas.width, canvas.height)
-    meme.props.forEach(prop => {
+    meme.props.forEach((prop,inx) => {
+        
         let { x, y, fakeImg } = prop;
-        ctx.drawImage(fakeImg, x - prop.height() / 2, y - prop.width() / 2, prop.height(), prop.width())
+        ctx.drawImage(fakeImg, x - prop.width() / 2, y - prop.height() / 2, prop.width(), prop.height())
+        if (avtiveLineOrProp && inx === getMeme().seletedPropInx) {
+            ctx.beginPath()
+            ctx.rect(prop.x - prop.width() /2, prop.y - prop.height()/2, prop.width(), prop.height())
+            ctx.strokeStyle = '555555'
+            ctx.stroke()
+        }
     })
     meme.lines.forEach((line, inx) => {
-
         ctx.strokeStyle = line.colorStroke;
         ctx.fillStyle = line.colorfill;
         ctx.font = `${line.size}px ${line.font}`;
@@ -56,12 +62,10 @@ function render() {
 
 
         if (avtiveLineOrProp && inx === getMeme().seletedLineInx) {
-
             ctx.beginPath()
             ctx.rect(line.x - line.width / 2, line.y - line.height, line.width, line.height)
             ctx.strokeStyle = '555555'
             ctx.stroke()
-
         }
 
         ctx.fillText(line.text, line.x, line.y);
@@ -100,17 +104,17 @@ function clickOnCanvas(ev) {
     avtiveLineOrProp = true;
     let { offsetX, offsetY } = ev;
     let line = getLine(offsetX, offsetY);
-    
-    if (line&&line.type==='line') {   
+
+    if (line && line.type === 'line') {
         document.querySelector('.select-font').value = line.font;
         document.querySelector('.edit-text').value = line.text;
-    }else if(line&&line.type==='prop'){
+    } else if (line && line.type === 'prop') {
         document.querySelector('.select-font').value = 'Impact';
         document.querySelector('.edit-text').value = '';
-    }else{
+    } else {
         document.querySelector('.select-font').value = 'Impact';
         document.querySelector('.edit-text').value = '';
-        avtiveLineOrProp=false;
+        avtiveLineOrProp = false;
     }
     render();
 }
@@ -236,4 +240,8 @@ function onAddProp(el) {
     let propId = el.dataset.pic;
     addProp(x, y, propId);
     render();
+}
+function onSave(){
+    
+    loadGallery();   
 }

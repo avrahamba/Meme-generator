@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
@@ -33,58 +34,74 @@
                         height="500"></canvas>
                 </div>
                 <img class="hidden-img" hidden>
-                <div class="editor-bar">
-                    <input type="text" class="edit-text" onkeyup="changeText(this,event)">
-                    <button class="replace-line-selected btn" onclick="onReplaceLineSelected(event)"><img src="images/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt="+"></button>
-                    <button class="add btn" onclick="addline()"><img src="images/ICONS/add.png" alt="+"></button>
-                    <button class="remove btn" onclick="onRemoveLine()"><img src="images/ICONS/trash.png" alt="trash"></button>
-                    <button class="big btn" onclick="onChangeSize(1,event)"><img src="images/ICONS/increase font - icon.png" alt=""></button>
-                    <button class="small btn" onclick="onChangeSize(-1,event)"><img src="images/ICONS/decrease font - icon.png" alt=""></button>
-                    <div class="strike-color-container btn">
-                        <img src="images/ICONS/text stroke.png">
-                        <input type="color" class="strike-color btn" onchange="onChangeColor(this,false)" value="#00000">
-                    </div>
-                    <div class="fill-color-container btn">
-                        <img src="images/ICONS/paint-board-and-brush.png">
-                        <input type="color" class="fill-color btn" onchange="onChangeColor(this,true)" value="#ffffff">
-                    </div>
-                    <button onclick="onMoveToRight(event)" class="right btn"><img src="images/ICONS/align-to-right.png" alt=""></button>
-                    <button onclick="onMoveToLeft(event)" class="left btn"><img src="images/ICONS/align-to-left.png" alt=""></button>
-                    <button onclick="onMoveToCenter(event)" class="center btn"><img src="images/ICONS/center-text-alignment.png" alt=""></button>
-                    <select class="select-font" onchange="onChanchFont(value,event)">
-                        <option value="Impact">Impact</option>
-                        <option value="Ariel">Ariel</option>
-                        <option value="Georgia">Georgia</option>
-                        <option value="Verdana">Verdana</option>
-                    </select>
-                    <div class="props-list">
-                        <div class="left-arrow" onclick="changeProps(false)">
-                            <svg >
-                                <g>
-                                <path d="M24.078,26.457c0.977,0.978,0.977,2.559,0,3.536c-0.488,0.488-1.128,0.731-1.77,0.731c-0.639,0-1.278-0.243-1.768-0.731 L5.914,15.362l14.629-14.63c0.977-0.977,2.559-0.976,3.535,0c0.977,0.977,0.977,2.56,0,3.536L12.984,15.362L24.078,26.457z"/>
-                                </g>
-                            </svg>
+                <div class="editor-bar-container">
+                    <div class="editor-bar">
+                        <input type="text" class="edit-text" onkeyup="changeText(this,event)">
+                        <button class="replace-line-selected btn" onclick="onReplaceLineSelected(event)"><img
+                                src="images/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt="+"></button>
+                        <button class="add btn" onclick="addline()"><img src="images/ICONS/add.png" alt="+"></button>
+                        <button class="remove btn" onclick="onRemoveLine()"><img src="images/ICONS/trash.png"
+                                alt="trash"></button>
+                        <button class="big btn" onclick="onChangeSize(1,event)"><img
+                                src="images/ICONS/increase font - icon.png" alt=""></button>
+                        <button class="small btn" onclick="onChangeSize(-1,event)"><img
+                                src="images/ICONS/decrease font - icon.png" alt=""></button>
+                        <div class="strike-color-container btn">
+                            <img src="images/ICONS/text stroke.png">
+                            <input type="color" class="strike-color btn" onchange="onChangeColor(this,false)"
+                                value="#00000">
                         </div>
-                        <div class="prop1 prop"><img onclick="onAddProp(this)" src=""></div>
-                        <div class="prop2 prop"><img onclick="onAddProp(this)" src=""></div>
-                        <div class="prop3 prop"><img onclick="onAddProp(this)" src=""></div>
-                        <div class="right-arrow" onclick="changeProps(true)">
-                            <svg>
-                                <g>
-	                                <path d="M24.813,15.366L10.185,29.997c-0.487,0.487-1.128,0.731-1.768,0.731c-0.641,0-1.279-0.244-1.769-0.731 c-0.977-0.978-0.977-2.561,0-3.536l11.095-11.096L6.649,4.268c-0.976-0.977-0.976-2.56,0-3.536c0.977-0.977,2.56-0.976,3.536,0 L24.813,15.366z"/>
-                                </g>
-                            </svg>
+                        <div class="fill-color-container btn">
+                            <img src="images/ICONS/paint-board-and-brush.png">
+                            <input type="color" class="fill-color btn" onchange="onChangeColor(this,true)"
+                                value="#ffffff">
                         </div>
-                    </div>
-                    <div class="share btn-share">
-                        <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
-                            <input name="img" id="imgData" type="hidden"/>
-                            <div class="share-container">
-                                <button class="btn-share" type="submit">Prepare to share</button>
+                        <button onclick="onMoveToRight(event)" class="right btn"><img
+                                src="images/ICONS/align-to-right.png" alt=""></button>
+                        <button onclick="onMoveToLeft(event)" class="left btn"><img src="images/ICONS/align-to-left.png"
+                                alt=""></button>
+                        <button onclick="onMoveToCenter(event)" class="center btn"><img
+                                src="images/ICONS/center-text-alignment.png" alt=""></button>
+                        <select class="select-font" onchange="onChanchFont(value,event)">
+                            <option value="Impact">Impact</option>
+                            <option value="Ariel">Ariel</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Verdana">Verdana</option>
+                        </select>
+                        <div class="props-list">
+                            <div class="left-arrow" onclick="changeProps(false)">
+                                <svg>
+                                    <g>
+                                        <path
+                                            d="M24.078,26.457c0.977,0.978,0.977,2.559,0,3.536c-0.488,0.488-1.128,0.731-1.77,0.731c-0.639,0-1.278-0.243-1.768-0.731 L5.914,15.362l14.629-14.63c0.977-0.977,2.559-0.976,3.535,0c0.977,0.977,0.977,2.56,0,3.536L12.984,15.362L24.078,26.457z" />
+                                    </g>
+                                </svg>
                             </div>
-                        </form>
+                            <div class="prop1 prop"><img onclick="onAddProp(this)" src=""></div>
+                            <div class="prop2 prop"><img onclick="onAddProp(this)" src=""></div>
+                            <div class="prop3 prop"><img onclick="onAddProp(this)" src=""></div>
+                            <div class="right-arrow" onclick="changeProps(true)">
+                                <svg>
+                                    <g>
+                                        <path
+                                            d="M24.813,15.366L10.185,29.997c-0.487,0.487-1.128,0.731-1.768,0.731c-0.641,0-1.279-0.244-1.769-0.731 c-0.977-0.978-0.977-2.561,0-3.536l11.095-11.096L6.649,4.268c-0.976-0.977-0.976-2.56,0-3.536c0.977-0.977,2.56-0.976,3.536,0 L24.813,15.366z" />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="share">
+                            <form action="" method="POST" enctype="multipart/form-data"
+                                onsubmit="uploadImg(this, event)">
+                                <input name="img" id="imgData" type="hidden" />
+                                <div class="share-container">
+                                    <button class="btn-share" type="submit">share</button>
+                                </div>
+                            </form>
+                        </div>
+                        <a href="#" class="btn-share download fa fa-download" onclick="onDownload(this)"></button></a>
+                        <!-- <a href="#" class="btn-share save fa fa-save" onclick="onSave()"></button></a>
+                        <a href="#" class="btn-share whatsapp fa fa-whatsapp" onclick="onDownload(this)"></button></a> -->
                     </div>
-                    <a href="#" class="btn-share download" onclick="onDownload(this)">Download</button></a>
                 </div>
             </div>
         </main>

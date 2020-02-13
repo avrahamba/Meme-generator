@@ -87,7 +87,7 @@ function getLine(x, y) {
         gMeme.seletedPropInx = propInx;
         if (propInx != -1) return gMeme.props[propInx];
     }
-
+    gMeme.seletedPropInx = -1;
 
     return gMeme.lines[lineInx];
 }
@@ -99,14 +99,14 @@ function getLineWidth() {
     return gMeme.lines[gMeme.seletedLineInx].width;
 }
 function moveLineTo(x, y) {
-    
+
     if (y === -1) {
         gMeme.lines[gMeme.seletedLineInx].x = x;
     } else {
         if (gMeme.seletedLineInx !== -1) {
             gMeme.lines[gMeme.seletedLineInx].x = x;
             gMeme.lines[gMeme.seletedLineInx].y = y;
-        } else if (gMeme.seletedPropInx!==-1) {
+        } else if (gMeme.seletedPropInx !== -1) {
             gMeme.props[gMeme.seletedPropInx].x = x;
             gMeme.props[gMeme.seletedPropInx].y = y;
         }
@@ -125,7 +125,12 @@ function moveLine(diff, startMove) {
     }
 }
 function changeSize(diff) {
-    gMeme.lines[gMeme.seletedLineInx].size += diff
+    if (gMeme.seletedLineInx != -1) {
+        gMeme.lines[gMeme.seletedLineInx].size += diff
+    }
+    if (gMeme.seletedPropInx !== -1) {
+        gMeme.props[gMeme.seletedPropInx].setSize(diff)
+    }
 }
 
 function changeColor(value, fill) {
@@ -145,15 +150,14 @@ function addProp(x, y, propId) {
     fakeImg.src = `images/props/${propId}.png`;
     let propRatio = fakeImg.width / fakeImg.height;
     let size = 150;
-
     gMeme.props.push({
         type: 'prop',
         propId,
         fakeImg,
-        chageSize: (num) => { size = num },
+        setSize: (diff) => { size += diff; },
         x,
         y,
-        height: () => size,
-        width: () => size / propRatio,
+        height: () => size / propRatio,
+        width: () => size,
     })
 }
