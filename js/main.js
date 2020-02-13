@@ -404,3 +404,6 @@ function openMeme(inx) {
     initMemeGenerator();
 
 }
+function onChangeBar(){
+    document.body.classList.toggle('side-bar');
+}

@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
 </head>
 
@@ -17,11 +17,12 @@
             <div onclick="location.reload()" class="logo">
                 <img  src="images/LOGO/LOGO.png" alt="logo">
             </div>
-            <ul>
+            <ul onclick="onChangeBar()">
                 <li onclick="loadGallery()">gallery</li>
                 <li onclick="loadSaved()">Memes</li>
                 <li onclick="loadAbout()">about</li>
             </ul>
+            <div onclick="onChangeBar()" class="hamborger fa fa-bars"></div>
         </nav>
         <aside class="search"></aside>
         <main>
@@ -130,6 +131,7 @@
             <p>all rights reserved 2020</p>
         </footer>
     </div>
+    <div onclick="onChangeBar()" class="screen"></div>
     <script src="libs/hammer.min.js"></script>
     <script src="js/storage-service.js"></script>
     <script src="js/share-service.js"></script>
