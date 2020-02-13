@@ -151,6 +151,14 @@ function onDownload(elLink) {
     elLink.href = data;
     elLink.download = 'my-meme.png';
 }
+function onShareToWhatsapp(){
+
+
+    /*
+    let fakeLink = document.createElement('a');
+    fakeLink.href = `https://web.whatsapp.com/send?text=My Meme`;
+fakeLink.click();
+*/}
 
 function loadGallery() {
     document.querySelector('.editor-container').classList.add('hidden');
@@ -251,8 +259,9 @@ function onSaveMeme() {
 }
 
 function onTouchStart(ev) {
-    let line = getLine(ev.center.x, ev.center.y);
-
+    
+    let line = getLine(ev.srcEvent.pageX-ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY-ev.srcEvent.target.offsetTop);
+    if(!line)return;
     if (line && line.type === 'line') {
         document.querySelector('.select-font').value = line.font;
         document.querySelector('.edit-text').value = line.text;
@@ -268,8 +277,8 @@ function onTouchStart(ev) {
 }
 
 function onTouchMove(ev) {
-    ev.stopPropagation();
-    moveLineTo(ev.center.x, ev.center.y);
+    ev.srcEvent.stopPropagation();
+    moveLineTo(ev.srcEvent.pageX-ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY-ev.srcEvent.target.offsetTop);
     render();
 }
 function loadAbout() {
