@@ -6,11 +6,10 @@ function uploadImg(elForm, ev) {
 
     function onSuccess(uploadedImgUrl) {
         uploadedImgUrl = encodeURIComponent(uploadedImgUrl);
-        document.querySelector('.share-container').innerHTML = `
-        <a class="btn-share" href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
-           Share   
-        </a>
-        `
+        var fakeLink = document.createElement('a');
+        fakeLink.setAttribute('href', `https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}`);
+        fakeLink.setAttribute('target', '_blank')
+        fakeLink.click();
     }
 
     doUploadImg(elForm, onSuccess);
@@ -22,11 +21,11 @@ function doUploadImg(elForm, onSuccess) {
         method: 'POST',
         body: formData
     })
-    .then(function (res) {
-        return res.text()
-    })
-    .then(onSuccess)
-    .catch(function (err) {
-        console.error(err)
-    })
+        .then(function (res) {
+            return res.text()
+        })
+        .then(onSuccess)
+        .catch(function (err) {
+            console.error(err)
+        })
 }

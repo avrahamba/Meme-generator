@@ -5,7 +5,9 @@ let gImgs = createImges();
 let gMeme = {
     selectedImgId: 1,
     seletedLineInx: 0,
-    lines: []
+    seletedPropInx: -1,
+    lines: [],
+    props: []
 }
 
 function setImg(id) {
@@ -58,6 +60,7 @@ function changeTextLine(text) {
 function addLineService(x, y) {
     gMeme.seletedLineInx = gMeme.lines.length;
     gMeme.lines.push({
+        type: 'line',
         text: '',
         size: 50,
         colorStroke: '#000000',
@@ -73,8 +76,19 @@ function getLine(x, y) {
         x > line.x - line.width / 2 &&
         y < line.y + line.height * (2 / 5) &&
         y > line.y - line.height);
-    if (lineInx === -1) return;
     gMeme.seletedLineInx = lineInx;
+    if (lineInx === -1) {
+        let propInx = gMeme.props.findIndex(prop =>
+            x < prop.x + prop.width() / 2 &&
+            x > prop.x - prop.width() / 2 &&
+            y < prop.y + prop.height() / 2 &&
+            y > prop.y - prop.height() / 2
+        );
+        gMeme.seletedPropInx = propInx;
+        if (propInx != -1) return gMeme.props[propInx];
+    }
+
+
     return gMeme.lines[lineInx];
 }
 
@@ -85,11 +99,17 @@ function getLineWidth() {
     return gMeme.lines[gMeme.seletedLineInx].width;
 }
 function moveLineTo(x, y) {
+    
     if (y === -1) {
         gMeme.lines[gMeme.seletedLineInx].x = x;
     } else {
-        gMeme.lines[gMeme.seletedLineInx].x = x;
-        gMeme.lines[gMeme.seletedLineInx].y = y;
+        if (gMeme.seletedLineInx !== -1) {
+            gMeme.lines[gMeme.seletedLineInx].x = x;
+            gMeme.lines[gMeme.seletedLineInx].y = y;
+        } else if (gMeme.seletedPropInx!==-1) {
+            gMeme.props[gMeme.seletedPropInx].x = x;
+            gMeme.props[gMeme.seletedPropInx].y = y;
+        }
     }
 
 }
@@ -118,4 +138,22 @@ function changeFont(font) {
 function replaceLineSelected() {
     if (gMeme.seletedLineInx + 1 === gMeme.lines.length) gMeme.seletedLineInx = 0;
     else gMeme.seletedLineInx++;
+}
+
+function addProp(x, y, propId) {
+    let fakeImg = document.createElement('img');
+    fakeImg.src = `images/props/${propId}.png`;
+    let propRatio = fakeImg.width / fakeImg.height;
+    let size = 150;
+
+    gMeme.props.push({
+        type: 'prop',
+        propId,
+        fakeImg,
+        chageSize: (num) => { size = num },
+        x,
+        y,
+        height: () => size,
+        width: () => size / propRatio,
+    })
 }
