@@ -11,7 +11,7 @@ function init() {
     let hammer = new Hammer(document.querySelector('#meme-canvas'));
     hammer.on('doubletap tap', onTouchStart);
     hammer.on('panup pandown panleft panright', onTouchMove);
-    document.querySelector('#meme-canvas').addEventListener('touchmove',(ev)=>{ev.preventDefault()},event)
+    document.querySelector('#meme-canvas').addEventListener('touchmove', (ev) => { ev.preventDefault() }, event)
 }
 function initGallery() {
     let container = document.querySelector('.gallery');
@@ -32,10 +32,13 @@ function enterGenerator(id) {
 }
 function initMemeGenerator() {
     let meme = getMeme();
-    document.querySelector('.hidden-img').src = `images/full/${getImgUrl(meme.selectedImgId)}`;
-    render(meme);
-    addline();
-    renderProps();
+    let hiddenImg = document.querySelector('.hidden-img')
+    hiddenImg.src = `images/full/${getImgUrl(meme.selectedImgId)}`;
+    hiddenImg.addEventListener('onload', () => {
+        render(meme);
+        addline();
+        renderProps();
+    })
 }
 
 function render() {
@@ -260,9 +263,9 @@ function onSaveMeme() {
 }
 
 function onTouchStart(ev) {
-    let [x,y] = [ev.srcEvent.pageX - ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY - ev.srcEvent.target.offsetTop];
+    let [x, y] = [ev.srcEvent.pageX - ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY - ev.srcEvent.target.offsetTop];
     drawArc(x, y)
-    let line = getLine(x,y);
+    let line = getLine(x, y);
     if (!line) return;
     if (line && line.type === 'line') {
         document.querySelector('.select-font').value = line.font;
@@ -281,8 +284,8 @@ function onTouchStart(ev) {
 function onTouchMove(ev) {
     console.log('ev :', ev);
     let target = document.querySelector('#meme-canvas');
-    let [x,y] = [ev.center.x- target.offsetLeft, ev.center.y -target.offsetTop];
-       moveLineTo(x,y);
+    let [x, y] = [ev.center.x - target.offsetLeft, ev.center.y - target.offsetTop];
+    moveLineTo(x, y);
     render();
 }
 
