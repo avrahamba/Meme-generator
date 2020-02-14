@@ -282,28 +282,10 @@ function onTouchMove(ev) {
     console.log('ev :', ev);
     let target = document.querySelector('#meme-canvas');
     let [x,y] = [ev.center.x- target.offsetLeft, ev.center.y -target.offsetTop];
-    // let [x,y] = [ev.srcEvent.pageX - target.offsetLeft, ev.srcEvent.pageY - target.offsetTop];
-    // console.log('ev :', ev);
-    // if (x<0||y<0)
-
-    drawArc(x, y);
-    //    moveLineTo(x,y);
-    //render();
+       moveLineTo(x,y);
+    render();
 }
 
-function drawArc(x, y) {
-    let canvas = document.querySelector('#meme-canvas');
-    let ctx = canvas.getContext('2d');
-
-    ctx.beginPath()
-    ctx.lineWidth = '6'
-    ctx.arc(x, y, 60, 0, 2 * Math.PI);
-    ctx.strokeStyle = 'white'
-    ctx.stroke();
-    ctx.fillStyle = 'blue'
-    ctx.fill()
-
-}
 function loadAbout() {
     document.querySelector('.gallery-container').classList.add('hidden');
     document.querySelector('.gallery-saved').classList.add('hidden');
