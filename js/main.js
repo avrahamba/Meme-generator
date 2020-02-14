@@ -259,8 +259,9 @@ function onSaveMeme() {
 }
 
 function onTouchStart(ev) {
-
-    let line = getLine(ev.srcEvent.pageX - ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY - ev.srcEvent.target.offsetTop);
+    let [x,y] = [ev.srcEvent.pageX - ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY - ev.srcEvent.target.offsetTop];
+    drawArc(x, y)
+    let line = getLine(x,y);
     if (!line) return;
     if (line && line.type === 'line') {
         document.querySelector('.select-font').value = line.font;
@@ -277,11 +278,26 @@ function onTouchStart(ev) {
 }
 
 function onTouchMove(ev) {
-    ev.srcEvent.stopPropagation();
-    console.log(ev.srcEvent.pageX - ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY - ev.srcEvent.target.offsetTop);
     
-    moveLineTo(ev.srcEvent.pageX - ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY - ev.srcEvent.target.offsetTop);
-    render();
+    ev.srcEvent.stopPropagation();
+    let [x,y] = [ev.srcEvent.pageX - ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY - ev.srcEvent.target.offsetTop];
+    drawArc(x, y);
+    //    moveLineTo(x,y);
+    //render();
+}
+
+function drawArc(x, y) {
+    let canvas = document.querySelector('#meme-canvas');
+    let ctx = canvas.getContext('2d');
+
+    ctx.beginPath()
+    ctx.lineWidth = '6'
+    ctx.arc(x, y, 30, 0, 2 * Math.PI);
+    ctx.strokeStyle = 'white'
+    ctx.stroke();
+    ctx.fillStyle = 'blue'
+    ctx.fill()
+
 }
 function loadAbout() {
     document.querySelector('.gallery-container').classList.add('hidden');
