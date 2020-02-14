@@ -280,7 +280,8 @@ function onTouchStart(ev) {
 function onTouchMove(ev) {
     ev.srcEvent.stopPropagation();
     let target = document.querySelector('#meme-canvas');
-    let [x,y] = [ev.srcEvent.pageX - target.offsetLeft, ev.srcEvent.pageY - target.offsetTop];
+    let [x,y] = [ target.offsetLeft, ev.srcEvent.pageY ];
+    // let [x,y] = [ev.srcEvent.pageX - target.offsetLeft, ev.srcEvent.pageY - target.offsetTop];
     console.log('ev :', ev);
     // if (x<0||y<0)
 
