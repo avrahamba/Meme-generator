@@ -259,8 +259,7 @@ function onSaveMeme() {
 }
 
 function onTouchStart(ev) {
-    let target = document.querySelector('#meme-canvas');
-    let [x,y] = [ev.srcEvent.pageX - target.offsetLeft, ev.srcEvent.pageY - target.offsetTop];
+    let [x,y] = [ev.srcEvent.pageX - ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY - ev.srcEvent.target.offsetTop];
     drawArc(x, y)
     let line = getLine(x,y);
     if (!line) return;
@@ -282,12 +281,27 @@ function onTouchMove(ev) {
     ev.srcEvent.stopPropagation();
     let target = document.querySelector('#meme-canvas');
     let [x,y] = [ev.srcEvent.pageX - target.offsetLeft, ev.srcEvent.pageY - target.offsetTop];
+    console.log('ev :', ev);
+    // if (x<0||y<0)
 
-    // drawArc(x, y);
-       moveLineTo(x,y);
-    render();
+    drawArc(x, y);
+    //    moveLineTo(x,y);
+    //render();
 }
 
+function drawArc(x, y) {
+    let canvas = document.querySelector('#meme-canvas');
+    let ctx = canvas.getContext('2d');
+
+    ctx.beginPath()
+    ctx.lineWidth = '6'
+    ctx.arc(x, y, 60, 0, 2 * Math.PI);
+    ctx.strokeStyle = 'white'
+    ctx.stroke();
+    ctx.fillStyle = 'blue'
+    ctx.fill()
+
+}
 function loadAbout() {
     document.querySelector('.gallery-container').classList.add('hidden');
     document.querySelector('.gallery-saved').classList.add('hidden');
