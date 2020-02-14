@@ -278,6 +278,8 @@ function onTouchStart(ev) {
 
 function onTouchMove(ev) {
     ev.srcEvent.stopPropagation();
+    console.log(ev.srcEvent.pageX - ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY - ev.srcEvent.target.offsetTop);
+    
     moveLineTo(ev.srcEvent.pageX - ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY - ev.srcEvent.target.offsetTop);
     render();
 }
