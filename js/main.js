@@ -11,6 +11,7 @@ function init() {
     let hammer = new Hammer(document.querySelector('#meme-canvas'));
     hammer.on('doubletap tap', onTouchStart);
     hammer.on('panup pandown panleft panright', onTouchMove);
+    document.querySelector('#meme-canvas').addEventListener('touchmove',(ev)=>{ev.preventDefault()},event)
 }
 function initGallery() {
     let container = document.querySelector('.gallery');
@@ -278,8 +279,7 @@ function onTouchStart(ev) {
 }
 
 function onTouchMove(ev) {
-    ev.srcEvent.stopPropagation();
-    ev.srcEvent.preventDefault();
+    console.log('ev :', ev);
     let target = document.querySelector('#meme-canvas');
     let [x,y] = [ target.offsetLeft, ev.srcEvent.pageY ];
     // let [x,y] = [ev.srcEvent.pageX - target.offsetLeft, ev.srcEvent.pageY - target.offsetTop];
