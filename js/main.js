@@ -10,7 +10,7 @@ function init() {
     if (navigator.share) {
         document.querySelector('.share-api').addEventListener('click',()=>{
             var canvas = document.querySelector('#meme-canvas');
-
+alert('')
          let   navigator = window.navigator;
             const title = "meme";
             let data = { files: [], text: '', url: '', title: title };
