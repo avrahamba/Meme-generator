@@ -8,7 +8,7 @@ let avtiveLineOrProp = false;
 
 function init() {
     if (navigator.share) {
-        document.querySelector('.share-api').addEventListener('click', () => {
+       document.querySelector('.share-api').addEventListener('click', () => {
             var canvas = document.querySelector('#meme-canvas');
             let navigator = window.navigator;
             const title = "meme";
@@ -16,7 +16,7 @@ function init() {
 
             canvas.toBlob(blob => {
                 alert('test1')
-                var file = new File(blob, "image.png");
+                var file = new File([blob], "image.png");
                 data.files.push(file);
                 navigator
                     .share(data)
@@ -29,11 +29,6 @@ function init() {
             }, 'image/png');
 
         });
-        // navigator.share({
-        //     title: document.title,
-        //     text: 'Hello World',
-        //     url: 'https://developer.mozilla.org',
-        //   });
     } else {
         document.querySelector('.share-api').remove();
     }
