@@ -17,7 +17,7 @@ function init() {
             canvas.toBlob(blob => {
                 alert('test1')
                 var file = new File([blob], "image.png");
-                data.files=[file];
+              //  data.files=[file];
                 navigator
                     .share(data)
                     .then(() => { })
