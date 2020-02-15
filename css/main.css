@@ -9,9 +9,11 @@ html {
 body {
 	margin: 0;
 }
-img{
+
+img {
 	width: 100%;
 }
+
 /* editor */
 
 .editor-container {
@@ -23,6 +25,11 @@ img{
 	width: 45vw;
 	margin: 5vw;
 	margin-right: 0;
+}
+
+.rtl .canvas-container {
+	margin-right: 5vw;
+	margin-left: 0;
 }
 
 .editor-bar-container {
@@ -114,7 +121,8 @@ img{
 }
 
 .editor-bar>.big {
-	grid-row: 3 / 4;width: auto;
+	grid-row: 3 / 4;
+	width: auto;
 	grid-column: 1 / 2;
 }
 
@@ -381,7 +389,7 @@ img{
 .header-navbar li {
 	display: flex;
 	align-items: center;
-	width: 7rem;
+	width: 8rem;
 	justify-content: center;
 }
 
@@ -389,7 +397,12 @@ img{
 	border-right: solid green 2px;
 }
 
-.header-navbar li:nth-child(3) {
+.rtl .header-navbar li {
+	border-left: solid green 2px;
+	border-right: none;
+}
+
+.header-navbar li:nth-child(4) {
 	border-right: none;
 }
 
@@ -411,6 +424,9 @@ img{
 		background-color: rgba(0, 0, 0, 0.8);
 		opacity: 0;
 		top: 0;
+	}
+	.side-bar .screen:hover {
+		cursor: pointer;
 	}
 	.side-bar .screen {
 		display: block;
@@ -444,8 +460,16 @@ img{
 		z-index: 1;
 		flex-direction: column;
 	}
-	.header-navbar>ul li:hover{
-		border:none;
+	.rtl .header-navbar>ul {
+		right: auto;
+		left: 0;
+		transform: translate(-120%, 0);
+	}
+	.side-bar .header-navbar>ul {
+		transform: translate(0, 0);
+	}
+	.header-navbar>ul li:hover {
+		border: none;
 		border-left: black solid 5px;
 	}
 	.header-navbar>ul li {
@@ -454,12 +478,9 @@ img{
 		display: flex;
 		border-right: none;
 	}
-	.header-navbar>ul li:not(:nth-child(3)){
+	.header-navbar>ul li:not(:nth-child(4)) {
 		border-bottom: none;
 		border-bottom: solid green 2px;
-	}
-	.side-bar .header-navbar>ul {
-		transform: translate(0, 0);
 	}
 	.side-bar .header-navbar>ul li {
 		z-index: 1;
@@ -468,7 +489,7 @@ img{
 
 /* search bar */
 
-.search-container{
+.search-container {
 	height: 6.25rem;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -476,11 +497,13 @@ img{
 	justify-content: space-between;
 	align-items: center;
 }
-.search{
+
+.search {
 	display: inline;
 	border-bottom: solid 2px black;
 }
-.search input{
+
+.search input {
 	height: 2rem;
 	width: 15rem;
 	background-color: #fff;
@@ -502,7 +525,6 @@ img{
 	height: 222px;
 	margin-inline-end: 30px;
 	width: auto;
-
 }
 
 .text-continer>h3 {

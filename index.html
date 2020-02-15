@@ -4,23 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meme Generator</title>
+    <title data-trans="title">Meme Generator</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
 </head>
 
-<body onload="init()">
+<body onload="init()" dir="ltr">
     <div class="main-container">
         <nav class="header-navbar">
             <div onclick="location.reload()" class="logo">
                 <img  src="images/LOGO/LOGO.png" alt="logo">
             </div>
-            <ul onclick="onChangeBar()">
-                <li onclick="loadGallery()">gallery</li>
-                <li onclick="loadSaved()">Memes</li>
-                <li onclick="loadAbout()">about</li>
+            <ul>
+                <li data-trans="Gallery" onclick="loadGallery()">Gallery</li>
+                <li data-trans="Memes" onclick="loadSaved()">Memes</li>
+                <li data-trans="About" onclick="loadAbout()">About</li>
+                <li data-trans="lang" onclick="toggleLang()">lang</li>
             </ul>
             <div onclick="onChangeBar()" class="hamborger fa fa-bars"></div>
         </nav>
@@ -28,7 +29,7 @@
             <div class="gallery-container">
                 <aside class="search-container">
                     <div class="search">
-                        <input type="text" placeholder="Enter search keyword" onkeyup="searchTabs(this)">
+                        <input type="text" data-trans="search" placeholder="Enter search keyword" onkeyup="searchTabs(this)">
                         <div class="fa fa-search icon"></div>
                     </div>
                     <div class="tags"></div>
@@ -104,7 +105,7 @@
                                 onsubmit="uploadImg(this, event)">
                                 <input name="img" id="imgData" type="hidden" />
                                 <div class="share-container">
-                                    <button class="btn-share" type="submit">share</button>
+                                    <button data-trans="share" class="btn-share" type="submit">share</button>
                                 </div>
                             </form>
                         </div>
@@ -117,8 +118,8 @@
         <section class="about hidden">
             <img class="circle" src="images/my-pic.jpg" alt="">
             <div class="text-continer">
-                <h3>Avraham Ben Arosh</h3>
-                <p class="text-muted">My name is Avraham Ben Arosh, I study full-stack web developer in coding-academy.
+                <h3 data-trans="Name">Avraham Ben Arosh</h3>
+                <p data-trans="about-p" class="text-muted">My name is Avraham Ben Arosh, I study full-stack web developer in coding-academy.
                 </p>
                 <div class="links">
                     <a href="https://twitter.com/avrahamba">
@@ -134,11 +135,12 @@
             </div>
         </section>
         <footer>
-            <h2>avraham</h2>
-            <p>all rights reserved 2020</p>
+            <h2 data-trans="Name">Avraham</h2>
+            <p data-trans="copyright">all rights reserved 2020</p>
         </footer>
     </div>
     <div onclick="onChangeBar()" class="screen"></div>
+    <script src="js/i18n-service.js"></script>
     <script src="libs/hammer.min.js"></script>
     <script src="js/storage-service.js"></script>
     <script src="js/share-service.js"></script>

@@ -12,6 +12,7 @@ function init() {
     hammer.on('doubletap tap', onTouchStart);
     hammer.on('panup pandown panleft panright', onTouchMove);
     document.querySelector('#meme-canvas').addEventListener('touchmove', (ev) => { ev.preventDefault() }, event)
+    doTrans();
 }
 function initGallery() {
     let container = document.querySelector('.gallery');
@@ -29,6 +30,7 @@ function enterGenerator(id) {
     document.querySelector('.editor-container').classList.remove('hidden');
     document.querySelector('.about').classList.add('hidden');
     initMemeGenerator();
+    doTrans()
 }
 function initMemeGenerator() {
     let meme = getMeme();
