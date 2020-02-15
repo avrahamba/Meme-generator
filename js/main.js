@@ -12,12 +12,12 @@ function init() {
             var canvas = document.querySelector('#meme-canvas');
             let navigator = window.navigator;
             const title = "meme";
-            let data = { files: [], text: 'meme', url: '', title: title };
+            let data = {  text: 'meme', url: '', title: title };
 
             canvas.toBlob(blob => {
                 alert('test1')
                 var file = new File([blob], "image.png");
-                data.files.push(file);
+                data.files=[file];
                 navigator
                     .share(data)
                     .then(() => { })
