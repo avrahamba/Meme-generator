@@ -14,7 +14,6 @@ function init() {
             let data = { text: '', url: '', title: '' };
 
             canvas.toBlob(blob => {
-                alert('test1')
                 var file = new File([blob], "image.png", { type: "image/png" });
                 data.files = [file];
                 navigator
@@ -23,7 +22,6 @@ function init() {
                     .catch(err => {
                         alert("Unsuccessful share " + err);
                     });
-                alert('test2')
 
             }, 'image/png');
 
