@@ -29,7 +29,7 @@ function init() {
                           .share(data)
                           .then(() => {})
                           .catch(err => {
-                            console.error("Unsuccessful share " + err);
+                            alert("Unsuccessful share " + err);
                           });
                       }
 
