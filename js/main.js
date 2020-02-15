@@ -15,7 +15,8 @@ function init() {
             text: 'Hello World',
             url: 'https://developer.mozilla.org',
           });
-        })
+        });
+        alert('')
 
     }else{
         document.querySelector('.share-api').remove();
