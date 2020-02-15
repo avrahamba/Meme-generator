@@ -24,7 +24,7 @@ var gTrans = {
         he: 'שמי אברהם בן ארוש אני לומד פיתוח אפליקציות ווב בקודיג אקדמי.',
     },
     'search': {
-        en: 'Enter search keyword 0.2',
+        en: 'Enter search keyword 0.3',
         he: 'חפש',
     },
     'copyright': {

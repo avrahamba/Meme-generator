@@ -9,7 +9,33 @@ function init() {
     if (navigator.share) {
         document.querySelector('.share-api').addEventListener('click',()=>{
             var canvas = document.querySelector('#meme-canvas');
-            canvas.toBlob(blob => navigator.share({   blob: blob, mimeType: 'image/png' }), 'image/png');
+
+         let   navigator = window.navigator;
+            const title = "meme";
+            let data = { files: [], text: '', url: '', title: title };
+            const options = { type: "image/png" };
+        
+            this.http
+              .get(url, {
+                responseType: "arraybuffer"
+              })
+              .subscribe(response => {
+                  
+                  canvas.toBlob(blob => {
+                      let blob = new File([response], `${text}.png`, options);
+                      data.files.push(blob);
+                      if (navigator.canShare(data)) {
+                        navigator
+                          .share(data)
+                          .then(() => {})
+                          .catch(err => {
+                            console.error("Unsuccessful share " + err);
+                          });
+                      }
+
+                  }, 'image/png');
+              });
+
         });
         // navigator.share({
         //     title: document.title,
