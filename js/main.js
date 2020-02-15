@@ -9,7 +9,12 @@ function init() {
     if (navigator.share) {
         document.querySelector('.share-api').addEventListener(()=>{
             var canvas = document.querySelector('#meme-canvas');
-        canvas.toBlob(blob => navigator.share({  title:'my meme', blob: blob, mimeType: 'image/png' }), 'image/png');
+        // canvas.toBlob(blob => navigator.share({   blob: blob, mimeType: 'image/png' }), 'image/png');
+        navigator.share({
+            title: document.title,
+            text: 'Hello World',
+            url: 'https://developer.mozilla.org',
+          });
         })
 
     }else{
