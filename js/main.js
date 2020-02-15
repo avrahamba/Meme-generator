@@ -5,6 +5,7 @@ let gImg;
 const gPropsCont = 5;
 let gStartProps = 1;
 let avtiveLineOrProp = false;
+
 function init() {
     if (navigator.share) {
         document.querySelector('.share-api').addEventListener('click',()=>{
@@ -22,7 +23,6 @@ function init() {
               .subscribe(response => {
                   
                   canvas.toBlob(blob => {
-                      let blob = new File([response], `${text}.png`, options);
                       data.files.push(blob);
                       if (navigator.canShare(data)) {
                         navigator
