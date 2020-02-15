@@ -7,7 +7,7 @@ let gStartProps = 1;
 let avtiveLineOrProp = false;
 function init() {
     if (navigator.share) {
-        document.querySelector('.share-api').addEventListener(()=>{
+        document.querySelector('.share-api').addEventListener('click',()=>{
             var canvas = document.querySelector('#meme-canvas');
         // canvas.toBlob(blob => navigator.share({   blob: blob, mimeType: 'image/png' }), 'image/png');
         navigator.share({
@@ -16,7 +16,6 @@ function init() {
             url: 'https://developer.mozilla.org',
           });
         });
-        alert('')
 
     }else{
         document.querySelector('.share-api').remove();
