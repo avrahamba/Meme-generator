@@ -7,7 +7,12 @@ let gStartProps = 1;
 let avtiveLineOrProp = false;
 function init() {
     if (navigator.share) {
-    } else {
+        document.querySelector('.share-api').addEventListener(()=>{
+            var canvas = document.querySelector('#meme-canvas');
+        canvas.toBlob(blob => navigator.share({  title:'my meme', blob: blob, mimeType: 'image/png' }), 'image/png');
+        })
+
+    }else{
         document.querySelector('.share-api').remove();
     }
 
@@ -216,11 +221,6 @@ function onReplaceLineSelected(ev) {
     replaceLineSelected();
     document.querySelector('.edit-text').value = getMeme().lines[getMeme().seletedLineInx].text;
     render();
-}
-
-function onShareApi() {
-    var canvas = document.querySelector('#meme-canvas');
-    canvas.toBlob(blob => navigator.share({ blob: blob, mimeType: 'image/png' }), 'image/png');
 }
 
 function changeProps(next) {
