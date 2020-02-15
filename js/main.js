@@ -16,7 +16,6 @@ function init() {
             url: 'https://developer.mozilla.org',
           });
         });
-alert('')
     }else{
         document.querySelector('.share-api').remove();
     }
