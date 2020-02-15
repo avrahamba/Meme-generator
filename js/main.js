@@ -33,12 +33,12 @@ function enterGenerator(id) {
     doTrans()
 }
 function initMemeGenerator() {
-    addline();
-    renderProps();
     let meme = getMeme();
     let hiddenImg = document.querySelector('.hidden-img')
     hiddenImg.src = `images/full/${getImgUrl(meme.selectedImgId)}`;
-    hiddenImg.addEventListener('onload', () => {
+    hiddenImg.addEventListener('load', () => {
+        addline();
+        renderProps();
         render(meme);
     })
 }
@@ -103,7 +103,7 @@ function addline() {
     let memeLineCount = getMeme().lines.length;
     let canvas = document.querySelector('#meme-canvas');
     let y = canvas.height / 2;
-    if (memeLineCount === 0 || memeLineCount === 1) y = (memeLineCount) ? canvas.height - 100 : 100;
+    if (memeLineCount === 0 || memeLineCount === 1) y = (memeLineCount) ? canvas.height - canvas.height / 10 : canvas.height / 10 + 50;
     addLineService(canvas.width / 2, y)
     document.querySelector('.edit-text').value = '';
     document.querySelector('.select-font').value = 'Impact';
@@ -284,7 +284,6 @@ function onTouchStart(ev) {
 }
 
 function onTouchMove(ev) {
-    console.log('ev :', ev);
     let target = document.querySelector('#meme-canvas');
     let [x, y] = [ev.center.x - target.offsetLeft, ev.center.y - target.offsetTop];
     moveLineTo(x, y);

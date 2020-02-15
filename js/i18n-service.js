@@ -41,7 +41,7 @@ var gTrans = {
     },
 }
 
-var gCurrLang = 'he';
+var gCurrLang = 'en';
 
 function doTrans() {
     // For each el get the data-trans and use getTrans to replace the innerText 
