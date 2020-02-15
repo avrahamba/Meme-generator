@@ -9,13 +9,13 @@ function init() {
     if (navigator.share) {
         document.querySelector('.share-api').addEventListener('click',()=>{
             var canvas = document.querySelector('#meme-canvas');
-        // canvas.toBlob(blob => navigator.share({   blob: blob, mimeType: 'image/png' }), 'image/png');
-        navigator.share({
-            title: document.title,
-            text: 'Hello World',
-            url: 'https://developer.mozilla.org',
-          });
+            canvas.toBlob(blob => navigator.share({   blob: blob, mimeType: 'image/png' }), 'image/png');
         });
+        // navigator.share({
+        //     title: document.title,
+        //     text: 'Hello World',
+        //     url: 'https://developer.mozilla.org',
+        //   });
     }else{
         document.querySelector('.share-api').remove();
     }
