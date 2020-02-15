@@ -8,33 +8,25 @@ let avtiveLineOrProp = false;
 
 function init() {
     if (navigator.share) {
-        document.querySelector('.share-api').addEventListener('click',()=>{
+        document.querySelector('.share-api').addEventListener('click', () => {
             var canvas = document.querySelector('#meme-canvas');
-alert('')
-         let   navigator = window.navigator;
+            let navigator = window.navigator;
             const title = "meme";
-            let data = { files: [], text: '', url: '', title: title };
+            let data = { files: [], text: 'meme', url: '', title: title };
             const options = { type: "image/png" };
-        
-            this.http
-              .get(url, {
-                responseType: "arraybuffer"
-              })
-              .subscribe(response => {
-                  
-                  canvas.toBlob(blob => {
-                      data.files.push(blob);
-                      if (navigator.canShare(data)) {
-                        navigator
-                          .share(data)
-                          .then(() => {})
-                          .catch(err => {
-                            alert("Unsuccessful share " + err);
-                          });
-                      }
 
-                  }, 'image/png');
-              });
+                    canvas.toBlob(blob => {
+                        data.files.push(blob);
+                        if (navigator.canShare(data)) {
+                            navigator
+                                .share(data)
+                                .then(() => { })
+                                .catch(err => {
+                                    alert("Unsuccessful share " + err);
+                                });
+                        }
+
+                    }, 'image/png');
 
         });
         // navigator.share({
@@ -42,7 +34,7 @@ alert('')
         //     text: 'Hello World',
         //     url: 'https://developer.mozilla.org',
         //   });
-    }else{
+    } else {
         document.querySelector('.share-api').remove();
     }
 
