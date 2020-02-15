@@ -196,9 +196,9 @@ img {
 	grid-column: 2 / 3;
 }
 
-.editor-bar>.whatsapp {
+.editor-bar>.share-api {
 	grid-row: 6 / 7;
-	grid-column: 3 / 4;
+	grid-column: 4 / 5;
 }
 
 .props-list>.prop>img {

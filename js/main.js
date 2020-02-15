@@ -6,6 +6,11 @@ const gPropsCont = 5;
 let gStartProps = 1;
 let avtiveLineOrProp = false;
 function init() {
+    if (navigator.share) {
+    } else {
+        document.querySelector('.share-api').remove();
+    }
+
     initGallery();
     window.addEventListener('mouseup', () => { activeLine = null });
     window.addEventListener('click', () => { avtiveLineOrProp = false; render(); })
@@ -213,11 +218,9 @@ function onReplaceLineSelected(ev) {
     render();
 }
 
-function shareToWhatsapp() {
-    var fakeLink = document.createElement('a');
-    fakeLink.setAttribute('href', 'whatsapp://send?text=' + encodeURIComponent(imageURL));
-    fakeLink.setAttribute('data-action', 'share/whatsapp/share');
-    fakeLink.click();
+function onShareApi() {
+    var canvas = document.querySelector('#meme-canvas');
+    canvas.toBlob(blob => navigator.share({ blob: blob, mimeType: 'image/png' }), 'image/png');
 }
 
 function changeProps(next) {
