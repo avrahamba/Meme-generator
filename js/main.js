@@ -33,13 +33,13 @@ function enterGenerator(id) {
     doTrans()
 }
 function initMemeGenerator() {
+    addline();
+    renderProps();
     let meme = getMeme();
     let hiddenImg = document.querySelector('.hidden-img')
     hiddenImg.src = `images/full/${getImgUrl(meme.selectedImgId)}`;
     hiddenImg.addEventListener('onload', () => {
         render(meme);
-        addline();
-        renderProps();
     })
 }
 

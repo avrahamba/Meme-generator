@@ -36,8 +36,8 @@ var gTrans = {
         he: 'English',
     },
     'share': {
-        en: 'שתף',
-        he: 'Share',
+        en: 'Share',
+        he: 'שתף',
     },
 }
 
@@ -45,16 +45,24 @@ var gCurrLang = 'he';
 
 function doTrans() {
     // For each el get the data-trans and use getTrans to replace the innerText 
-    if(gCurrLang === 'en') document.body.classList.remove('rtl');
-    else document.body.classList.add('rtl');
-    document.body.dir = (gCurrLang === 'en')?'ltr':'rtl';
+    let elLeft = document.querySelector('.left-arrow path');
+    let elright = document.querySelector('.right-arrow path');
+    if (gCurrLang === 'en') {
+        document.body.classList.remove('rtl');
+    }
+    else {
+        document.body.classList.add('rtl');
+    }
+    document.body.dir = (gCurrLang === 'en') ? 'ltr' : 'rtl';
     var els = document.querySelectorAll('[data-trans]');
     els.forEach(el => {
         var txt = getTrans(el.dataset.trans);
         // If this is an input, translate the placeholder
         if (el.placeholder) el.placeholder = txt;
         else el.innerText = txt;
-    })
+    });
+
+
 }
 
 

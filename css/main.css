@@ -79,6 +79,9 @@ img {
 	border: none;
 	font-size: 4.5vw;
 }
+.rtl .props-list g{
+	transform: rotate(180deg) translateY(-31px) translateX(-30px);
+}
 
 .editor-bar select {
 	display: flex;
