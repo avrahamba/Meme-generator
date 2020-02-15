@@ -183,7 +183,7 @@ img {
 
 .editor-bar>.share {
 	grid-row: 6 / 7;
-	grid-column: 4 / 6;
+	grid-column: 5 / 6;
 }
 
 .editor-bar>.download {
@@ -223,9 +223,8 @@ img {
 
 .editor-bar button.btn-share {
 	border: none;
-	width: 12vw;
+	width: 5.5vw;
 	font-weight: 500;
-	font-family: 'Montserrat', sans-serif;
 }
 
 .editor-bar button.btn-share:hover {
@@ -288,9 +287,8 @@ img {
 	}
 	.editor-bar button.btn-share {
 		border: none;
-		width: 30vw;
+		width: 14vw;
 		font-weight: 500;
-		font-family: 'Montserrat', sans-serif;
 	}
 }
 

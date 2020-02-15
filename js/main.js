@@ -7,6 +7,7 @@ let gStartProps = 1;
 let avtiveLineOrProp = false;
 function init() {
     initGallery();
+    window.addEventListener('mouseup', () => { activeLine = null });
     window.addEventListener('click', () => { avtiveLineOrProp = false; render(); })
     let hammer = new Hammer(document.querySelector('#meme-canvas'));
     hammer.on('doubletap tap', onTouchStart);
@@ -157,14 +158,6 @@ function onDownload(elLink) {
     elLink.href = data;
     elLink.download = 'my-meme.png';
 }
-function onShareToWhatsapp() {
-
-
-    /*
-    let fakeLink = document.createElement('a');
-    fakeLink.href = `https://web.whatsapp.com/send?text=My Meme`;
-fakeLink.click();
-*/}
 
 function loadGallery() {
     document.querySelector('.editor-container').classList.add('hidden');
@@ -179,7 +172,6 @@ function onMouseDownCanvas(ev) {
     avtiveLineOrProp = true;
     let { offsetX, offsetY } = ev;
     activeLine = getLine(offsetX, offsetY);
-    window.addEventListener('mouseup', () => { activeLine = null });
 }
 function onMousMoveCanvas(ev) {
     if (!activeLine) return;
@@ -266,7 +258,6 @@ function onSaveMeme() {
 
 function onTouchStart(ev) {
     let [x, y] = [ev.srcEvent.pageX - ev.srcEvent.target.offsetLeft, ev.srcEvent.pageY - ev.srcEvent.target.offsetTop];
-    drawArc(x, y)
     let line = getLine(x, y);
     if (!line) return;
     if (line && line.type === 'line') {

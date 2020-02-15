@@ -12,41 +12,41 @@ let gMeme = {
 
 function setImg(id) {
     gMeme.selectedImgId = id;
-    gMeme.seletedLineInx= 0;
-    gMeme.seletedPropInx= -1;
-    gMeme.lines= [];
-    gMeme.props= [];
+    gMeme.seletedLineInx = 0;
+    gMeme.seletedPropInx = -1;
+    gMeme.lines = [];
+    gMeme.props = [];
 
 }
 
 function createImges() {
     let inx = 1;
     return [
-        { id: inx, url: `${inx++}.jpg`, keywords: ['Trump'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['Trump', 'טרמפ'] },
         { id: inx, url: `${inx++}.jpg`, keywords: [] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['dogs'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['baby'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['baby','dog'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['cat'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['man'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['baby'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['man'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['man'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['man'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['dogs', 'כלבים'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['baby', 'תינוק'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['baby', 'dog', 'תינוק', 'כלב'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['cat', 'חתול'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['man', 'איש'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['baby', 'תינוק'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['man', 'איש'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['man', 'איש'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['man', 'איש'] },
         { id: inx, url: `${inx++}.jpg`, keywords: [] },
         { id: inx, url: `${inx++}.jpg`, keywords: [] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['trump'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['baby'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['dog'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['obama'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['sport'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['wolf'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['morpheus'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['trump', 'טרמפ'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['baby', 'תינוק'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['dog', 'כלב'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['obama', 'אובמה'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['sport', 'ספורט'] },
         { id: inx, url: `${inx++}.jpg`, keywords: [] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['win'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['suprise'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['potin'] },
-        { id: inx, url: `${inx++}.jpg`, keywords: ['everywhere'] }
+        { id: inx, url: `${inx++}.jpg`, keywords: ['morpheus', 'מורפיוס', 'מטריקס'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: [] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['win', 'ניצחון'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['suprise', 'הפתעה'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['potin', 'פוטין'] },
+        { id: inx, url: `${inx++}.jpg`, keywords: ['everywhere', 'בכל מקום'] }
     ]
 }
 
@@ -104,7 +104,6 @@ function getLineWidth() {
     return gMeme.lines[gMeme.seletedLineInx].width;
 }
 function moveLineTo(x, y) {
-
     if (y === -1) {
         gMeme.lines[gMeme.seletedLineInx].x = x;
     } else {
@@ -167,19 +166,19 @@ function addProp(x, y, propId) {
     })
 }
 
-function saveMeme(){
+function saveMeme() {
     let savedMemes = loadFromStorage('savedMemes');
-    if(!savedMemes)savedMemes=[];
+    if (!savedMemes) savedMemes = [];
     let copyMeme = JSON.parse(JSON.stringify(gMeme));
-    copyMeme.props.forEach((prop,inx) => {
-        prop.fakeImg=null;
+    copyMeme.props.forEach((prop, inx) => {
+        prop.fakeImg = null;
         prop.size = gMeme.props[inx].width()
-        prop.propRatio = gMeme.props[inx].width()/gMeme.props[inx].height()
+        prop.propRatio = gMeme.props[inx].width() / gMeme.props[inx].height()
     });
     savedMemes.push(copyMeme);
-    saveToStorage('savedMemes',savedMemes);
+    saveToStorage('savedMemes', savedMemes);
 }
 
-function getSavedMeme(){
+function getSavedMeme() {
     return loadFromStorage('savedMemes');
 }
