@@ -13,20 +13,19 @@ function init() {
             let navigator = window.navigator;
             const title = "meme";
             let data = { files: [], text: 'meme', url: '', title: title };
-            const options = { type: "image/png" };
 
-                    canvas.toBlob(blob => {
-                        data.files.push(blob);
-                        if (navigator.canShare(data)) {
-                            navigator
-                                .share(data)
-                                .then(() => { })
-                                .catch(err => {
-                                    alert("Unsuccessful share " + err);
-                                });
-                        }
+            canvas.toBlob(blob => {
+                alert('test1')
+                data.files.push(blob);
+                navigator
+                    .share(data)
+                    .then(() => { })
+                    .catch(err => {
+                        alert("Unsuccessful share " + err);
+                    });
+                alert('test2')
 
-                    }, 'image/png');
+            }, 'image/png');
 
         });
         // navigator.share({
