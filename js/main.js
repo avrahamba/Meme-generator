@@ -8,16 +8,16 @@ let avtiveLineOrProp = false;
 
 function init() {
     if (navigator.share) {
-       document.querySelector('.share-api').addEventListener('click', () => {
+        document.querySelector('.share-api').addEventListener('click', () => {
             var canvas = document.querySelector('#meme-canvas');
             let navigator = window.navigator;
             const title = "meme";
-            let data = {  text: 'meme', url: '', title: title };
+            let data = { text: 'meme', url: '', title: title };
 
             canvas.toBlob(blob => {
                 alert('test1')
-                var file = new File([blob], "image/png");
-               data.files=[file];
+                var file = new File([blob], "image.png", { type: "image/png" });
+                data.files = [file];
                 navigator
                     .share(data)
                     .then(() => { })
