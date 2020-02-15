@@ -8,24 +8,7 @@ let avtiveLineOrProp = false;
 
 function init() {
     if (navigator.share) {
-        document.querySelector('.share-api').addEventListener('click', () => {
-            var canvas = document.querySelector('#meme-canvas');
-            let navigator = window.navigator;
-            let data = { text: '', url: '', title: '' };
-
-            canvas.toBlob(blob => {
-                var file = new File([blob], "image.png", { type: "image/png" });
-                data.files = [file];
-                navigator
-                    .share(data)
-                    .then(() => { })
-                    .catch(err => {
-                        alert("Unsuccessful share " + err);
-                    });
-
-            }, 'image/png');
-
-        });
+        document.querySelector('.share-api').addEventListener('click', webSharAPI);
     } else {
         document.querySelector('.share-api').remove();
     }
@@ -181,6 +164,25 @@ function onDownload(elLink) {
     const data = canvas.toDataURL();
     elLink.href = data;
     elLink.download = 'my-meme.png';
+}
+
+function webSharAPI() {
+    var canvas = document.querySelector('#meme-canvas');
+    let navigator = window.navigator;
+    let data = { text: '', url: '', title: '' };
+
+    canvas.toBlob(blob => {
+        var file = new File([blob], "image.png", { type: "image/png" });
+        data.files = [file];
+        navigator
+            .share(data)
+            .then(() => { })
+            .catch(err => {
+                alert("Unsuccessful share " + err);
+            });
+
+    }, 'image/png');
+
 }
 
 function loadGallery() {
