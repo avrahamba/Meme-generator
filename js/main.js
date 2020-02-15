@@ -11,8 +11,7 @@ function init() {
         document.querySelector('.share-api').addEventListener('click', () => {
             var canvas = document.querySelector('#meme-canvas');
             let navigator = window.navigator;
-            const title = "meme";
-            let data = { text: 'meme', url: '', title: title };
+            let data = { text: '', url: '', title: '' };
 
             canvas.toBlob(blob => {
                 alert('test1')
