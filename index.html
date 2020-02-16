@@ -23,7 +23,9 @@
                 <li data-trans="About" onclick="loadAbout()">About</li>
                 <li data-trans="lang" onclick="toggleLang()">lang</li>
             </ul>
-            <div onclick="onChangeBar()" class="hamborger fa fa-bars"></div>
+            <div onclick="onChangeBar()" class="hamburger-container">
+            <div class="hamburger"></div>
+            </div>
         </nav>
         <main>
             <div class="gallery-container">
@@ -47,7 +49,7 @@
                 <img class="hidden-img" hidden>
                 <div class="editor-bar-container">
                     <div class="editor-bar">
-                        <input type="text" class="edit-text" onkeyup="changeText(this,event)">
+                        <input type="text" class="edit-text" onkeyup="changeText(this,event)" data-trans="enter-text" placeholder="E    nter text">
                         <button class="replace-line-selected btn" onclick="onReplaceLineSelected(event)"><img
                                 src="images/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt="+"></button>
                         <button class="add btn" onclick="addline()"><img src="images/ICONS/add.png" alt="+"></button>

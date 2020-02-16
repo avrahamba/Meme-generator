@@ -39,6 +39,10 @@ var gTrans = {
         en: 'Share',
         he: 'שתף',
     },
+    'enter-text': {
+        en: 'Enter text',
+        he: 'כתוב טקסט',
+    },
 }
 
 var gCurrLang = 'en';

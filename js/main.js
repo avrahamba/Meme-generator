@@ -22,6 +22,9 @@ function init() {
     document.querySelector('#meme-canvas').addEventListener('touchmove', (ev) => { ev.preventDefault() }, event)
     doTrans();
 }
+
+/* Gallery */
+
 function initGallery() {
     let container = document.querySelector('.gallery');
     let strHtml = getImages().map(img => `
@@ -31,6 +34,19 @@ function initGallery() {
     `).join('');
     container.innerHTML = strHtml;
 }
+function loadGallery() {
+    document.body.classList.remove('side-bar');
+    document.querySelector('.editor-container').classList.add('hidden');
+    document.querySelector('.gallery-saved').classList.add('hidden');
+    document.querySelector('.about').classList.add('hidden');
+    document.querySelector('.gallery-container').classList.remove('hidden');
+    initGallery();
+
+}
+
+
+/* Editor */
+
 function enterGenerator(id) {
     setImg(id);
     document.querySelector('.gallery-container').classList.add('hidden');
@@ -41,13 +57,12 @@ function enterGenerator(id) {
     doTrans()
 }
 function initMemeGenerator() {
-    let meme = getMeme();
     let hiddenImg = document.querySelector('.hidden-img')
     hiddenImg.src = `images/full/${getImgUrl(meme.selectedImgId)}`;
     hiddenImg.addEventListener('load', () => {
         addline();
         renderProps();
-        render(meme);
+        render();
     })
 }
 
@@ -98,8 +113,6 @@ function resizeCanvas(ratio) {
     canvas.width = elContainer.offsetWidth;
     canvas.height = elContainer.offsetHeight;
 }
-
-
 function changeText(elText, ev) {
     ev.stopPropagation();
     avtiveLineOrProp = true;
@@ -160,6 +173,8 @@ function onChangeColor(elColor, fill) {
     render();;
 }
 function onDownload(elLink) {
+    avtiveLineOrProp = false;
+    render();
     let canvas = document.querySelector('#meme-canvas');
     const data = canvas.toDataURL();
     elLink.href = data;
@@ -182,15 +197,6 @@ function webSharAPI() {
             });
 
     }, 'image/png');
-
-}
-
-function loadGallery() {
-    document.querySelector('.editor-container').classList.add('hidden');
-    document.querySelector('.gallery-saved').classList.add('hidden');
-    document.querySelector('.about').classList.add('hidden');
-    document.querySelector('.gallery-container').classList.remove('hidden');
-    initGallery();
 
 }
 
@@ -301,6 +307,7 @@ function onTouchMove(ev) {
 }
 
 function loadAbout() {
+    document.body.classList.remove('side-bar');
     document.querySelector('.gallery-container').classList.add('hidden');
     document.querySelector('.gallery-saved').classList.add('hidden');
     document.querySelector('.editor-container').classList.add('hidden');
@@ -308,6 +315,7 @@ function loadAbout() {
 
 }
 function loadSaved() {
+    document.body.classList.remove('side-bar');
     document.querySelector('.gallery-container').classList.add('hidden');
     document.querySelector('.gallery-saved').classList.remove('hidden');
     document.querySelector('.editor-container').classList.add('hidden');
