@@ -57,6 +57,7 @@ function enterGenerator(id) {
     doTrans()
 }
 function initMemeGenerator() {
+    let meme = getMeme();
     let hiddenImg = document.querySelector('.hidden-img')
     hiddenImg.src = `images/full/${getImgUrl(meme.selectedImgId)}`;
     hiddenImg.addEventListener('load', () => {
